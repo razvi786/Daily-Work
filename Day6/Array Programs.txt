@@ -1,0 +1,409 @@
+// First i have created an Array class with Array Input and Output Operations
+// I have done this to avoid input and output multiple times
+
+package Arrays;
+
+import java.util.Scanner;
+
+public class Array {
+	
+	Scanner sc=new Scanner(System.in);
+
+	public int[] inputArray() {
+		System.out.println("Enter the size of Array: ");
+		int size=sc.nextInt();
+		
+		int a[]=new int[size];
+		
+		System.out.println("Input Array Elements");
+		for(int i=0;i<size;i++) {
+			System.out.print("Enter Element-"+i+": ");
+			a[i]=sc.nextInt();
+		}
+		
+		return a;
+		
+	}
+	
+	public void outputArray(int[] a) {
+		System.out.println();
+		System.out.print("Array Elements: ");
+		for(int i=0;i<a.length;i++) {
+			System.out.print(a[i]+" ");
+		}
+		System.out.println();
+	}
+	
+}
+
+
+
+
+//1. Write a program in C to read n number of values in an array and display it in reverse order
+
+package Arrays;
+
+import java.util.Scanner;
+
+import Arrays.Array;
+
+public class Reverse {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Array a=new Array();
+
+		int arr[];
+		
+		arr=a.inputArray();
+		
+		a.outputArray(arr);
+		
+		System.out.println();
+		System.out.print("Array Elements in Reverse: ");
+		for(int i=arr.length-1;i>=0;i--) {
+			System.out.print(arr[i]+" ");
+		}
+		
+		
+	}
+
+}
+
+
+
+//2. Write a program in C to find the sum of all elements of the array.
+
+package Arrays;
+
+public class ArraySum {
+	
+	public static int sum(int[] a) {
+		
+		int sum=0;
+		
+		for(int i=0;i<a.length;i++) {
+			sum=sum+a[i];
+		}
+		
+		return sum;
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		Array a=new Array();
+		
+		int arr[];
+		
+		arr=a.inputArray();
+		
+		a.outputArray(arr);
+		
+		int sum=sum(arr);
+		
+		System.out.println("Sum of Array Elements: "+sum);
+	}
+
+}
+
+
+
+//3. Write a program in C to copy the elements of one array into another array.
+
+package Arrays;
+
+public class CopyArray {
+	
+	public static int[] copy(int[] a) {
+		
+		int[] b=new int[a.length];
+		
+		for(int i=0;i<a.length;i++) {
+			
+			b[i]=a[i];
+		}
+		
+		return b;
+	}
+	
+	public static void main(String[] args) {
+		
+		Array a=new Array();
+		
+		int arr[],brr[];
+		
+		arr=a.inputArray();
+		
+		brr=copy(arr);
+		
+		System.out.println("Copied Array");
+		a.outputArray(brr);
+		
+	}
+
+}
+
+
+
+//4. Write a program in C to count a total number of duplicate elements in an array.
+
+package Arrays;
+
+import java.util.ArrayList;
+
+public class Duplicate {
+	
+	public static int duplicateNatural(int[] a) {
+		
+		int count=0;
+		
+		for(int i=0;i<a.length-1;i++) {
+			for(int j=i+1;j<a.length;j++) {
+				
+				if(a[i]==a[j]) {
+					
+					count++;
+					
+					for(int k=i-1;k>=0;k--) {
+						
+						if(a[k]==a[i]) {
+							count--;
+							break;
+						}
+							
+					}
+					
+					break;
+					
+				}
+			}
+		}
+		
+		
+		return count;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Array a=new Array();
+		
+		int arr[];
+		
+		arr=a.inputArray();
+		
+		a.outputArray(arr);
+		
+		int dup=duplicateNatural(arr);
+		
+		System.out.println("No. of Duplicate Elements are: "+dup);
+
+	}
+
+}
+
+
+
+//5. Write a program in C to find the maximum and minimum element in an array. 
+
+
+package Arrays;
+
+public class ArrayMaxMin {
+	
+	public static void main(String[] args) {
+		
+		Array a=new Array();
+		
+		int arr[];
+		
+		arr=a.inputArray();
+		
+		a.outputArray(arr);
+		
+		int min=arr[0],max=arr[0];
+		
+		for(int i=0;i<arr.length;i++) {
+			
+			if(arr[i]<min)
+				min=arr[i];
+			
+			if(arr[i]>max)
+				max=arr[i];
+			
+		}
+		
+		System.out.println("Minimum element is: "+min);
+		
+		System.out.println("Maximum element is: "+max);
+		
+	}
+
+}
+
+
+
+//6. Write a program in C to separate odd and even integers in separate arrays.
+
+package Arrays;
+
+import java.util.ArrayList;
+
+public class OddEven {
+	
+	public static int oddCount(int[] a) {
+		int count=0;
+		for(int i=0;i<a.length;i++) {
+			if(a[i]%2!=0) {
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	public static int evenCount(int[] a) {
+		int count=0;
+		for(int i=0;i<a.length;i++) {
+			if(a[i]%2==0) {
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	public static void main(String[] args) {
+		
+		Array a=new Array();
+		
+		int arr[],odd[],even[];
+		
+		arr=a.inputArray();
+		
+		a.outputArray(arr);
+		
+		odd=new int[oddCount(arr)];
+		
+		even=new int[evenCount(arr)];
+		
+		
+		
+		for(int i=0, oddI=0, evenI=0 ;i<arr.length;i++) {
+			
+			if(arr[i]%2!=0) {
+				odd[oddI]=arr[i];
+				oddI++;
+			}else {
+				even[evenI]=arr[i];
+				evenI++;
+			}
+			
+		}
+		
+		System.out.print("Odd Array:");
+		a.outputArray(odd);
+		
+		System.out.print("Even Array:");
+		a.outputArray(even);
+		
+		
+		
+	}
+
+}
+
+
+
+//7. Write a program in C to sort elements of array in ascending order.
+
+package Arrays;
+
+public class Sort {
+	
+	public static int[] selectionSort(int []a) {
+		
+		for(int i=0;i<a.length-1;i++) {
+			for(int j=i+1;j<a.length;j++) {
+				if(a[i]>a[j]) { //swap
+					int temp=a[i];
+					a[i]=a[j];
+					a[j]=temp;
+				}
+			}
+		}
+		
+		return a;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Array a=new Array();
+		
+		int arr[];
+		
+		arr=a.inputArray();
+		
+		a.outputArray(arr);
+		
+		arr=selectionSort(arr);
+		
+		System.out.print("Array after Selection Sort:");
+		
+		a.outputArray(arr);
+		
+
+	}
+
+}
+
+
+
+
+//8. Write a program in C to find the second largest element in an array.
+
+package Arrays;
+
+public class SecondLargest {
+	
+	public static int large(int a[]) {
+		
+		int largest=a[0];
+		
+		for(int i=0;i<a.length;i++) {
+			if(a[i]>largest)
+				largest=a[i];
+		}
+		
+		int large=0;
+		
+		for(int i=0;i<a.length;i++) {
+			if(a[i]==largest)
+				continue;
+			if(a[i]>large)
+				large=a[i];
+		}
+		
+		return large;
+	}
+	
+	public static void main(String[] args) {
+		
+		Array a=new Array();
+		
+		int arr[];
+		
+		arr=a.inputArray();
+		
+		a.outputArray(arr);
+		
+		int large=large(arr);
+		
+		System.out.println("The Second Largest Element is: "+large);
+		
+	}
+
+}
+
+
