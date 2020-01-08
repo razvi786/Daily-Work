@@ -19,20 +19,20 @@ public class Duplicate {
 	
 	//Creating a 2 dimensional array
 	
-	public static int duplicateAdvanced(int[] a) {
-		
-		int arr[][]=new int[2][];
-		
-		for(int i=0;i<a.length;i++) {
-			
-		}
-		
-		
-		
-		
-		
-		
-	}
+//	public static int duplicateAdvanced(int[] a) {
+//		
+//		int arr[][]=new int[2][];
+//		
+//		for(int i=0;i<a.length;i++) {
+//			
+//		}
+//		
+//		
+//		
+//		
+//		
+//		
+//	}
 	
 	public static int duplicateArrayList(int[] a) {
 		

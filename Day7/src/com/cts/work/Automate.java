@@ -1,3 +1,13 @@
+//Problem Statement
+//The management of LearnMore University is planning to automate the University management system.
+//Therefore, Steve Wilkinson, the programmer, has decided to create a Java program that accepts the
+//student details, such as the first name, last name, age, course enrolled, and student ID.
+//In addition, he also needs to accept the employee details, such as first name, last name,
+//age, salary, department name, designation, and employee ID.
+//Steve must ensure the reusability of code.
+//The program must offer a choice to accept either the student's or employee's details.
+//Help Steve to develop the program.
+
 package com.cts.work;
 
 import java.util.Scanner;
