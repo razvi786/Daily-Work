@@ -25,12 +25,12 @@ public class SelectionSort {
 	}
 	
 	public static String[] selectionSort(String a[]) {
-		System.out.println();
+		System.out.println("-----SELECTION SORT-----");
 		int min;
 		for(int i=0;i<a.length-1;i++) {
 			min=i;
 			for(int j=i+1;j<a.length;j++) {
-				if(!firstSmall(a[min],a[j]))
+				if(!firstSmall(a[min].toLowerCase(),a[j].toLowerCase()))
 					min=j;
 			}
 			if(i!=min) {
@@ -56,9 +56,9 @@ public class SelectionSort {
 		
 		names=new String[n];
 		
+		System.out.print("Enter "+n+" Elements(Seperated by Space): ");
 		for(int i=0;i<n;i++) {
-			System.out.print("Enter Name-"+(i+1)+": ");
-			names[i]=sc.nextLine();
+			names[i]=sc.next();
 		}
 		
 		names=selectionSort(names);
