@@ -20,6 +20,11 @@ import java.util.Scanner;
 
 public class LabSeating {
 	
+	public static StringBuffer seating(int x,int y,int z,int s,StringBuffer sb) {
+		
+		return sb;
+	}
+	
 	//function to check whether x is less than y (only if they are positive)
 	public static boolean isLess(int x, int y) {
 		if(x>=0 && y>=0) { //if both are potitive
