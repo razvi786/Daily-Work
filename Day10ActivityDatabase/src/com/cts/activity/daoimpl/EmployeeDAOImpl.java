@@ -10,7 +10,7 @@ import com.cts.activity.dao.EmployeeDAO;
 public class EmployeeDAOImpl implements EmployeeDAO{
 	
 	static Connection con=null;
-	
+	static List<Employee> list=new ArrayList<>();
 	//Connect to database with try catch block
 	static {
 		

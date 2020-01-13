@@ -23,15 +23,17 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 			//establishing database connection
 			Class.forName("com.mysql.jdbc.Driver");
 			
-			String url="jdbc:mysql://localhost/cts";
+//			String url="jdbc:mysql://localhost/cts";
+			String url="jdbc:mysql://localhost:3306/cts";
 			String username="root";
-			String password="";
+			String password="root";
+			//String password="";
 			
 			con=DriverManager.getConnection(url, username, password);
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Exception: "+e.getMessage());
 		}
 		
 		
