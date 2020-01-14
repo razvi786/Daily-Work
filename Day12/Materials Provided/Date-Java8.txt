@@ -1,0 +1,434 @@
+
+Java 8 Date & Time API:
+=======================
+
+One of the many good things about new Date and Time API is that now it defines principle date-time concepts 
+eg.instants , duration , dates , times , timezones , and periods.
+
+It also follows good thing from Joda library about keeping human and machine interpretation of date time separated. 
+They are also based on the ISO Calendar system and unlike their predecessor, class in java.time packages are 
+both immutable and thread-safe. New date and time API is located inside java.time package and some of the key 
+classes are following :
+
+Instant - It represents a timestamp
+LocalDate - a date without time e.g. 2014-01-14. It can be used to store birthday, anniversary, date of joining etc.
+LocalTime - represents time without a date
+LocalDateTime - is used to combine date and time, but still without any offset or time-zone
+ZonedDateTime - a complete date-time with time-zone and resolved offset from UTC/Greenwich
+
+They are also coming with better time zone support with ZoneOffSet and ZoneId. Parsing and Formatting of Dates 
+are also revamped with new DateTimeFormatter class.
+
+
+Example 1 - How to get today's date in Java 8
+
+Java 8 has  a class called LocalDate which can be used to represent today's date. This class is little different 
+than java.util.Date because it only contains the date, no time part. So anytime if you just to represent date without time, 
+use this class.
+
+public class TodayDate {
+
+	public static void main(String[] args) {
+		
+		LocalDate date=LocalDate.now();
+		System.out.println("today's date is :"+date);
+
+	}
+
+}
+
+Example 2 - How to get current day, month and year in Java 8
+
+The LocalDate class has a convenient method to extract year, month, the day of the month and several other date attributes from an instance of LocalDate class. By using these methods, you can get whatever property of date you want, no need to use a supporting class like java.util.Calendar :
+
+public class TodayDate {
+
+	public static void main(String[] args) {
+		
+		LocalDate date=LocalDate.now();
+		int day=date.getDayOfMonth();
+		int month=date.getMonthValue();
+		int year=date.getYear();
+		
+		System.out.printf("Year : %d , Month : %d , Day : %d \t %n",year,month,day);
+
+	}
+
+}
+
+
+Example 3 - How to get a particular date in Java 8
+
+In the first example, we have seen that creating today's date was very easy because of static factory method now(), but you can also create a date from any arbitrary date by using another useful factory method called LocalDate.of(), this takes a year, month and date and return an equivalent LocalDate instance.
+
+The good thing about this method is that it has not repeated mistake done in previous API e.g. year started from 1900, months starting from zero etc. Here dates are represented in the way you write it e.g. in the following example it will represent 14th January, nothing is hidden about it.
+
+public class TodayDate {
+
+	public static void main(String[] args) {
+		
+		LocalDate birthday=LocalDate.of(1985, 01, 10);
+		
+		System.out.println("Your birthday is :"+birthday);
+
+	}
+}
+
+Example 4 - How to check if two dates are equal in Java 8
+
+Talking about real world date time task, one of them is to checking whether two dates are same or not. Many times you would like to check whether today is that special day, your birthday, anniversary or a trading holiday or not. Sometimes, you will get an arbitrary date and you need to check against certain date e.g. holidays to confirm whether given date is a holiday or not.
+
+This example will help you to accomplish those task in Java 8. Just like you thought, LocalDate has overridden equal method to provide date equality, as shown in the following example :
+
+public class TodayDate {
+
+	public static void main(String[] args) {
+		LocalDate today=LocalDate.now();
+		LocalDate birthday=LocalDate.of(1985, 01, 10);
+		
+		if(birthday.equals(today))
+		{
+			System.out.printf("Today %s and birthday %s are same dates %n",today,birthday);
+		}
+		else
+		{
+			System.out.println("Dates are not Equal");
+		}
+	}
+	
+Example 5 - How to check for recurring events e.g. birthday in Java 8
+
+Another practical task related to date and time in Java is checking for recurring events e.g. monthly bills,  wedding anniversary, EMI date or yearly insurance premium dates. If you are working for an E-commerce site, you would definitely have a module which sends birthday wishes to your customer and seasons greetings on every major holiday e.g. Christmas, Thanksgiving date or Deepawali in India.
+
+How do you check for holidays or any other recurring event in Java? By using MonthDay class. This class is a combination of month and date without a year, which means you can use it for events which occur every year.
+
+There are similar classes exists for other combination as well e.g. YearMonth. Like other classes in new date and time API, this is also immutable and thread-safe and it is also a value class. Now let's see example of how to use MonthDay class for checking recurring date time events :
+
+public class TodayDate {
+
+	public static void main(String[] args) {
+		LocalDate today=LocalDate.now();
+		LocalDate birthday=LocalDate.of(1985, 8, 18);
+		MonthDay birth=MonthDay.of(birthday.getMonthValue(), birthday.getDayOfMonth());
+		MonthDay current=MonthDay.from(today);
+		if(birth.equals(current))
+		{
+			System.out.printf("Today %s and birthday %s are same dates %n",today,birthday);
+		}
+		else
+		{
+			System.out.println("Dates are not Equal");
+		}
+	}
+}
+
+Example 6 - How to get current Time in Java 8
+
+This is very similar to our first example of getting the current date in Java 8. This time, we will use a class called LocalTime, which is the time without date and a close cousin of LocalDate class. Here also you can use static factory method now() to get the current time. The default format is hh:mm:ss:nnn where nnn is nanoseconds. 
+
+public class TodayTime {
+
+	public static void main(String[] args) {
+		
+		LocalTime current=LocalTime.now();
+		System.out.println("Current time is :"+current);
+	}
+}
+
+Example 7 - How to add hours in time
+
+In many occasions, we would like to add hours, minutes or seconds to calculate time in future. Java 8 has not only helped with Immutable and thread-safe classes but also provided better methods e.g. plusHours() instead of add(), there is no conflict. BTW, remember that these methods return a reference to new LocalTime instance because LocalTime is immutable, so don't forget to store them back.
+
+public class TodayTime {
+
+	public static void main(String[] args) {
+		
+		LocalTime current=LocalTime.now();
+		
+		LocalTime newTime=current.plusHours(2);
+		System.out.println("New  time is :"+newTime);
+	}
+}
+
+Example 8 - How to find Date after 1 week
+
+This is similar to the previous example, there we learned how to find time after 2 hours and here we will learn how to find a date after 1 week. LocalDate is used to represent date without the time and it got a plus() method which is used to add days, weeks or months, ChronoUnit is used to specify that unit. Since LocalDate is also immutable any mutable operation will result in a new instance, so don't forget to store it back.
+
+public class TodayTime {
+
+	public static void main(String[] args) {
+		
+		LocalDate today=LocalDate.now();
+		
+		LocalDate next=today.plus(1, ChronoUnit.WEEKS);
+		System.out.println("Today's date is :"+today);
+		System.out.println("1 week Later date is :"+next);
+	}
+}
+
+Example 9 - Date before and after 1 year
+
+This is a continuation of the previous example. In the last example, we learn how to use plus() method of LocalDate to add days, weeks or months in a date, now we will learn how to use the minus() method to find what was the day before 1 year.
+
+public class TodayTime {
+
+	public static void main(String[] args) {
+		
+		LocalDate today=LocalDate.now();
+		LocalDate previous=today.minus(1, ChronoUnit.YEARS);
+		LocalDate next=today.plus(1, ChronoUnit.YEARS);
+		System.out.println("previous Years' date is :"+previous);
+		System.out.println("Today's date is :"+today);
+		System.out.println("1 Year Later date is :"+next);
+	}
+}
+
+Example 10 - Using Clock in Java 8
+
+Java 8 comes with a Clock, which can be used to get current instant, date and time using time zone. You can use Clock in place of System.currentTimeInMillis() and TimeZone.getDefault().
+
+public class TodayClock {
+
+	public static void main(String[] args) {
+		
+		Clock clock=Clock.systemUTC();
+		System.out.println("Clock :"+clock);//Clock :SystemClock[Z]
+		
+		Clock defaultClock=Clock.systemDefaultZone();
+		System.out.println("Clock :"+defaultClock);//Clock :SystemClock[Asia/Calcutta]
+
+	}
+}
+
+Example 11 - How to see if a date is before or after another date in Java
+
+This is another very common task in an actual project. How do you find if a given date is before, or after current date or just another date? In Java 8, LocalDate class has got methods like isBefore() and isAfter() which can be used to compare two dates in Java. isBefore() method return true if given date comes before the date on which this method is called.
+
+public class BeforeAfter {
+
+	public static void main(String[] args) {
+		LocalDate today=LocalDate.now();
+		
+		LocalDate tommorow=LocalDate.of(2016, 8, 20);
+		if(today.isBefore(tommorow))
+		{
+			System.out.println("TRUE");
+		}
+		if(today.isAfter(tommorow))
+		{
+			System.out.println("TRUE");
+		}
+	}
+
+}
+Example 12 - Dealing with time zones in Java 8
+
+Java 8 has not only separated date and time but also timezone. You now have a separate set of classes related to timezone e.g. ZonId to represent a particular timezone and ZonedDateTime class to represent a date time with timezone. It's equivalent of GregorianCalendar class in pre-Java 8 world.  By using this class, you can convert local time to equivalent time in another time zone as shown in the following example :
+
+public class ZoneTest {
+
+	public static void main(String[] args) {
+		ZoneId zoneId=ZoneId.of("Asia/Calcutta");
+		
+		LocalDateTime localDateTime=LocalDateTime.now();
+		ZonedDateTime zonedDateTime=ZonedDateTime.of(localDateTime, zoneId);
+		System.out.println("Date and Time in delhi :"+zonedDateTime);
+	}
+}
+
+Example 13 - How to represent fixed date e.g. credit card expiry, YearMonth
+
+Like our MonthDay example for checking recurring events, YearMonth is another combination class to represent things like credit card expires, FD maturity date, Futures or options expiry dates etc. You can also use this class to find how many days are in the current month, lengthOfMonth() returns a number of days in the current YearMonth instance, useful for checking whether February has 28 or 29 days.
+
+public class YearMonthTest {
+
+	public static void main(String[] args) {
+		YearMonth today=YearMonth.now();
+		
+		System.out.printf("The current %s : %d \t %n",today,today.getMonthValue());
+		
+		YearMonth creditExpiry=YearMonth.of(2020, Month.OCTOBER);
+		System.out.println("Your Creadit Card Expiry is :"+creditExpiry);
+
+	}
+}
+
+Example 14 - How to check Leap Year in Java 8
+
+Nothing fancy here,  LocalDate class has isLeapYear() method which returns true if the year represented by that LocalDate is a leap year. 
+
+public class LeapYear {
+
+	public static void main(String[] args) {
+		
+		LocalDate today=LocalDate.now();
+		
+		if(today.isLeapYear())
+		{
+			System.out.printf("The Year %s is a Leap Year %n",today);
+		}
+		else
+		{
+			System.out.printf("The Year %s is not a Leap year %n",today);
+		}
+
+	}
+}
+
+Example 15 - How many days, month between two dates
+
+One of the common tasks is to calculate the number of days, weeks or months between two given dates. You can use java.time.Period class to calculate the number of days, month or year between two dates in Java. In the following example, we have calculated the number of months between the current date and a future date.
+
+public class BetweenDays {
+
+	public static void main(String[] args) {
+		LocalDate myMarriage=LocalDate.of(2016, Month.FEBRUARY, 03);
+		
+		LocalDate today=LocalDate.now();
+		
+		Period months=Period.between(myMarriage, today);
+		System.out.println("Months between My Marriage and today :"+months.getMonths());
+
+	}
+
+}
+
+Example 16 - Date and Time with timezone offset
+
+In Java 8, you can use ZoneOffset class to represent a time zone, for example, India is GMT or UTC +05:30 and to get a corresponding timezone you can use static method ZoneOffset.of() method. Once you get the offset you can create an OffSetDateTime by passing LocalDateTime and offset to it.
+
+public class OffsetZone {
+
+	public static void main(String[] args) {
+		
+		LocalDateTime localDateTime=LocalDateTime.of(2016, Month.JANUARY, 10, 11, 30);
+		
+		ZoneOffset zoneOffset=ZoneOffset.of("+05:30");
+		OffsetDateTime offsetDateTime=OffsetDateTime.of(localDateTime, zoneOffset);
+		System.out.println("Local DateTime Zone :"+offsetDateTime);
+
+	}
+
+}
+
+Example 17 - How to get current timestamp in Java 8
+
+If you remember how to get current timestamp before Java 8 then this would be a breeze. Instant class has a static factory method now() which return current time stamp, as shown below :
+
+public class InstantClass {
+
+	public static void main(String[] args) {
+		
+		Instant instant=Instant.now();
+		System.out.println("The Current timestamp is :"+instant);
+
+	}
+}
+
+You can see that current timestamp has both date and time component, much like java.util.Date,  in fact, Instant is your equivalent class of pre-Java 8 Date and you can convert between Date and Instant using respective conversion method added in both of these classes e.g. Date.from(Instant) is used to convert Instant to java.util.Date in Java and Date.toInstant() returns an Instant equivalent of that Date class. 
+
+Example 18 -  How to parse/format date in Java 8 using predefined formatting
+
+Date and time formatting was very tricky in pre-Java 8 world, our only friend SimpleDateFormat was not threading safe and quite bulky to use as a local variable for formatting and parsing numerous date instances. Thankfully, thread local variables made it usable in multi-threaded environment but Java has come a long way from there.
+
+It introduced a brand new date and time formatter which is thread-safe and easy to use. It now comes with some predefined formatter for common date patterns. For example, in this sample code, we are using predefined BASIC_ISO_DATE formatter, which uses the format 20140114 for January 14, 2014.
+
+public class DateFormat {
+
+	public static void main(String[] args) {
+		String date="20160819";
+		
+		LocalDate formatted=LocalDate.parse(date, DateTimeFormatter.BASIC_ISO_DATE);
+		System.out.printf("The format of %s is %s \t%n",date,formatted);
+
+	}
+}
+Example 19 - How to parse date in Java using custom formatting
+
+In the last example, we have used an inbuilt date and time formatter to parse date strings in Java. Sure, predefined formatters are great but there would be a time when you want to use your own custom date pattern and in that case, you have to create your own custom date time formatter instances as shown in this example. Following example has a date in format "MMM dd yyyy".
+
+You can create a DateTimeFormatter with any arbitrary pattern by using ofPattern() static method, it follows same literals to represent a pattern as before e.g. M is still a month and m is still a minute. An Invalid pattern will throw DateTimeParseException but a logically incorrect where you use m instead of M will not be caught.
+
+
+public class CustomDateFormat {
+
+	public static void main(String[] args) {
+	
+		String birthday="Jan 10 1985";
+		try
+		{
+			DateTimeFormatter formatter=DateTimeFormatter.ofPattern("MMM dd yyyy");
+			LocalDate birth=LocalDate.parse(birthday, formatter);
+			System.out.printf("The Date %s is formatted in %s %n",birthday,birth);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	Example 20 - How to convert Date to String in Java 8, formatting dates
+
+In last two example, though we have been using DateTimeFormatter class but we are mainly parsing a formatted date String. In this example, we will do the exact opposite. Here we have a date, instance of LocalDateTime class and we will convert into a formatted date String. This is by far the simplest and easiest way to convert Date to String in Java.
+
+The following example will return formatted String in place of Date. Similar to the previous example, we still need to create a DateTimeFormatter instance with given pattern but now instead of calling parse() method of LocalDate class, we will call format() method.
+
+This method returns a String which represents a date in a pattern represented bypassed DateTimeFormatter instance.
+
+public class CustomDateFormat {
+
+	public static void main(String[] args) {
+	
+		LocalDate arrival=LocalDate.now();
+		try
+		{
+			DateTimeFormatter formatter=DateTimeFormatter.ofPattern("MMM dd yyyy");
+			String comming=arrival.format(formatter);
+			System.out.printf("The Date %s is formatted in %s %n",arrival,comming);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}
+
+Important points about Date and Time API of Java 8
+
+1) Provides java.time.ZoneId to deal with timezones.
+
+2) Provides LocalDate and LocalTime classes
+
+3) All classes of new Date and Time API of Java 8 are Immutable and thread-safe, as opposed to existing Date and Calendar API, where key classes e.g. java.util.Date or SimpleDateFormat are not thread-safe.
+
+4) The key thing to new Date and Time API is that it define principle date-time concepts e.g. instants, durations, dates, times, timezones and periods. They are also based on the ISO Calendar system.
+
+3) Every Java developer should at least know following five classes from new Date and Time API :
+Instant - It represents a time-stamp e.g. 2014-01-14T02:20:13.592Z and can be obtained from java.time.Clock class as shown below :
+Instant current = Clock.system(ZoneId.of("Asia/Tokyo")).instant();
+LocalDate - represents a date without a time e.g. 2014-01-14. It can be used to store birthday, anniversary, date of joining etc.
+LocalTime - represents time without a date
+LocalDateTime - is used to combine date and time, but still without any offset or time-zone
+ZonedDateTime - a complete date-time with time-zone and resolved offset from UTC/Greenwich
+
+
+4) The main package is java.time, which contains classes to represent dates, times, instants, and durations. Two sub-packages are java.time.format for obvious reasons and java.time.temporal for a lower level access to fields.
+
+5) A time zone is a region of the earth where the same standard time is used. Each time zone is described by an identifier and usually has the format region/city (Asia/Tokyo) and an offset from Greenwich/UTC time. For example, the offset for Tokyo is +09:00.
+
+6) The OffsetDateTime class, in effect, combines the LocalDateTime class with the ZoneOffset class. It is used to represent a full date (year, month, day) and time (hour, minute, second, nanosecond) with an offset from Greenwich/UTC time (+/-hours:minutes, such as +06:00 or -08:00).
+
+7) The DateTimeFormatter class is used to format and parse dates in Java. Unlike SimpleDateFormat, this is both immutable and thread-safe and it can (and should) be assigned to a static constant where appropriate. DateFormatter class provides numerous predefined formatters and also allows you to define your own.
+
+Following the convention, it also has parse() to convert String to Date in Java and throws DateTimeParseException, if any problem occurs during conversion. Similarly, DateFormatter has a format() method to format dates in Java, and it throws DateTimeException error in case of a problem.
+
+8) Just to add, there is subtle difference between date formats "MMM d yyyy" and  "MMM dd yyyy", as former will recognize both "Jan 2, 2014" and "Jan 14, 2014", but later will throw exception when you pass "Jan 2, 2014", because it always expects two characters for day of month. To fix this, you must always pass single digit days as two digits by padding zero at beginning e.g. "Jan 2, 2014" should be passed as "Jan 02 2014".
+
+
+That's all about how to use new Java 8 Date and Time API. These short examples are great to understand new classes introduced in this new API. Since it is also task based, you don't need to look around when it comes to doing your day to day date and time-related programming task in Java. We have learned how to create and manipulate date instances.
+
+We learned about pure dates, a date with time and date with timezones, learned how to calculate the difference between two days, seen examples of finding a number of days left between now and a fixed day like your next birthday, anniversary or your insurance premium date.
+
+We have also learned how to parse and format dates in Java 8 in a threadsafe manner without using tricky tricks like thread local variable or a third party library like Joda Time. This new API should now be used as a standard for any date and time-related task.
+
+
