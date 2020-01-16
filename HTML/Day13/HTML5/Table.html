@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HTML5 Tables</title>
+  <style>
+    table{
+      width: 100%;
+    }
+    td,th{
+      padding: 5px;
+    }
+      table, td,th{
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+  </style>
+</head>
+<body>
+  <table >
+    <caption>Here are Some courses I've taken:</caption>
+    <thead>
+      <tr>
+        <th>Course Number</th>
+        <th>Course title</th>
+        <th>Semester Taken</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th colspan="3">For Credit</th>
+      </tr>
+      <tr style="background-color: lightskyblue;">
+        <td >6.813</td>
+        <td class="light-blue">User Interface Design</td>
+        <td class="light-blue">Spring 2014</td>
+      </tr>
+      <tr>
+        <td >6.034</td>
+        <td>Artificial Intelligence</td>
+        <td>Fall2013</td>
+      </tr>
+      <tr class="bg-dark" style="background-color: lightskyblue;">
+        <td >6.006</td>
+        <td>Introduction to Algorithms</td>
+        <td>Fall 2013</td>
+      </tr>
+      <tr>
+        <th colspan="3">Listener</th>
+      </tr>
+      <tr style="background-color: lightskyblue;">
+        <td >6.867</td>
+        <td>Machine Learning</td>
+        <td>Fall 2013</td>
+      </tr>
+      <tr>
+        <td>6.830</td>
+        <td>Database Systems</td>
+        <td>Fall 2012</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
