@@ -53,8 +53,8 @@
                 <header>
                     <h4>Create An Account</h4>
                 </header>     
-                <article style="float:left">
-                    <form action="#">
+                <article>
+                    <form id="form" action="#">
                         <label for="username">Username: </label>
                         <input type="text" id="username"><br>
 
@@ -62,7 +62,7 @@
                         <input type="password" id="password"><br>
 
                         <label for="confirm">Confirm Password: </label>
-                        <input type="password" id="password"><br>
+                        <input type="password" id="confirm"><br>
 
 
 
@@ -76,7 +76,10 @@
 
 
                     </form>
-                </article>         
+                </article>
+                <aside>
+                    <p id="error"></p>
+                </aside>
 
             </DIV>
 
@@ -84,19 +87,28 @@
 
     </DIV>
 
-    <div class="ehsan">
+    <div id="ehsan" class="ehsan">
 
     </div>
 
-    <sCRIPT>
-       function register() {
+    <script>
+        
+        function register(){
+            var password=document.getElementById("password").value;
+            var confirm=document.getElementById("confirm").value;
+            
+            if(password==confirm){
+                var username=document.getElementById("username").value;
+                localStorage.setItem("username",username);
+                localStorage.setItem("password",password);
+                document.getElementById("form").action="login.html";
+            }else{
+                document.getElementById("error").innerHTML="Passwords Doesn't Match";
+            }
 
-        var username=document.getElementById("username").value;
-        localStorage.setItem("username",username);
-
-    }
-
-    </sCRIPT>
+            
+        }
+    </script>
 
 
 

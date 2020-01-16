@@ -7,7 +7,7 @@
 
 </HEAD>
 
-<BODY>
+<BODY >
 
     <DIV id="mainDivContainer" style="position: relative; width: 100%; margin-top: 0px; margin-bottom: 0px;">
 
@@ -53,35 +53,50 @@
                 <header>
                     <h4>Create an Account</h4>
                 </header>     
-                <article style="float:left">
+                <article>
                     <form action="#">
                         <label for="username">Username: </label>
-                        <input type="text" id="username"><br>
+                        <input type="text" id="username" onkeyup="get()"b><br>
 
                         <label for="password">Password: </label>
                         <input type="password" id="password"><br>
 
-                        <button type="login" onclick="get();">Login</button>
-    
-
+                        <button type="login" onclick="login()">Login</button>
 
 
                     </form>
-                </article>          
+                </article>
+                <aside>
+                    <p id="error"></p>
+                </aside>     
 
             </DIV>
 
          </DIV>
 
     </DIV>
-    <div  class="username">
-
-    </div>
 
     <script>
+
         function get(){
-            var username=123
-            document.getElementById("username").innerHTML=username;
+            username=document.getElementById('username').value;
+            local_username=localStorage.getItem('username');
+            if(username==local_username){
+                password=localStorage.getItem("password");
+                document.getElementById("password").value=password;
+            }
+        }
+
+        function login(){
+            var local_username=localStorage.getItem('username');
+            var local_password=localStorage.getItem('password');
+            var username=document.getElementById('username').value;
+            var password=document.getElementById('password').value;
+            if((local_username==username) && (local_password==password)){
+                document.getElementById('error').innerHTML="Logged in successfully";
+            }else{
+                document.getElementById('error').innerHTML="Username and Password doesn't match";
+            }
         }
     </script>
 
