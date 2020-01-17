@@ -6,16 +6,41 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>HTML5 Tables</title>
   <style>
+    body{
+      padding: 20px;
+    }
+    caption{
+      font-size: xx-large;
+      text-transform: uppercase;
+      W
+    }
     table{
       width: 100%;
+      font-size: large;
     }
     td,th{
-      padding: 5px;
+      padding: 10px;
     }
       table, td,th{
         border: 1px solid black;
         border-collapse: collapse;
       }
+      tr:nth-child(even){
+        background-color:lightgreen;
+        color:brown;
+      }
+      tr:nth-child(odd){
+        background-color: yellow;
+        color: blue;
+      }
+      th{
+        background-color: lightslategray;
+        font-size: x-large;
+        color: black;
+      }
+      /* tr.alt td{
+        background-color: lightslategray;
+      } */
   </style>
 </head>
 <body>
@@ -32,7 +57,7 @@
       <tr>
         <th colspan="3">For Credit</th>
       </tr>
-      <tr style="background-color: lightskyblue;">
+      <tr>
         <td >6.813</td>
         <td class="light-blue">User Interface Design</td>
         <td class="light-blue">Spring 2014</td>
@@ -42,7 +67,7 @@
         <td>Artificial Intelligence</td>
         <td>Fall2013</td>
       </tr>
-      <tr class="bg-dark" style="background-color: lightskyblue;">
+      <tr class="bg-dark">
         <td >6.006</td>
         <td>Introduction to Algorithms</td>
         <td>Fall 2013</td>
@@ -50,7 +75,7 @@
       <tr>
         <th colspan="3">Listener</th>
       </tr>
-      <tr style="background-color: lightskyblue;">
+      <tr>
         <td >6.867</td>
         <td>Machine Learning</td>
         <td>Fall 2013</td>

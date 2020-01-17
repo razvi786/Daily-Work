@@ -93,9 +93,9 @@
             var username=document.getElementById('username').value;
             var password=document.getElementById('password').value;
             if((local_username==username) && (local_password==password)){
-                document.getElementById('error').innerHTML="Logged in successfully";
+                alert("Logged in successfully. Username="+username+" and Password="+password);
             }else{
-                document.getElementById('error').innerHTML="Username and Password doesn't match";
+                alert("Username and Password doesn't match");
             }
         }
     </script>

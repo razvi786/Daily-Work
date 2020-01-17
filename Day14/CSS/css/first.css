@@ -1,0 +1,22 @@
+table,th,td{
+  border: 1px solid;
+  border-collapse: collapse;
+  padding: 10px;
+  width: 50%;
+  font-size: large;
+}
+th{
+  background-color: lightskyblue;
+}
+div>p{
+  color:red;
+}
+div p{
+  color: blue;
+}
+div+p{
+  font-size: xx-large;
+}
+div~p{
+  text-align: center;
+}

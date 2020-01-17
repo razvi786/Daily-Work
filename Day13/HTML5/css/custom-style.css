@@ -1,0 +1,18 @@
+ul{
+  list-style-position: inside;
+}
+ol.upper{
+  list-style: upper-roman;
+}
+.item-1 li{
+  list-style: lower-alpha;
+}
+.item-3 li{
+  list-style: disc;
+}
+.item-2 ul{
+  list-style: circle;
+}
+#inner{
+  list-style: square;
+}
