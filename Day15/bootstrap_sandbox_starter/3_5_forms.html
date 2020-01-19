@@ -84,7 +84,7 @@
         <hr>
     </header>
 
-    <div class="container">
+    <form class="container">
         <!--##################START HERE#####################-->
 
         <!-- FORM -->
@@ -148,23 +148,24 @@
 
         <!-- INLINE FORM -->
         <form class="form-inline">
-            <input class="form-control" type="text" id="username" placeholder="Enter username">
-            <input class="form-control" type="text" id="password" placeholder="Password">
-            <div class="">
-                <label>
-                    <input class="form-control" type="checkbox"> Remember me
+            <input class="form-control mx-2" type="text" id="username" placeholder="Enter username">
+            <input class="form-control mx-2" type="text" id="password" placeholder="Password">
+            <div class="form-check mx-2">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label">
+                     Remember me
                 </label>
             </div>
 
-            <button class="form-control" type="submit">Submit</button c>
+            <button class="form-control mx-2" type="submit">Submit</button>
         </form>
 
         <br>
         <br>
 
         <!-- FORM ROW -->
-        <form class="">
-            <div class="row">
+        <form>
+            <div class="form-row">
                 <div class="col">
                     <input class="form-control" type="text" placeholder="First name">
                 </div>
@@ -178,24 +179,26 @@
         <br>
 
         <!-- VALIDATION -->
-        <div>
+        <form action="" class="needsvalidation" novalidate>
+        <div class="formgroup">
             <label for="username">Username</label>
-            <input type="text" id="username">
+            <input class="form-control" type="text" id="username">
         </div>
-        <div>
+        <div class="form-group">
             <label for="password">Password</label>
-            <input type="text" id="password">
-            <div>
+            <input class="form-control" type="text" id="password">
+            <div class="invalid-feedback">
                 Password not strong enough
             </div>
         </div>
         <div>
             <label for="password2">Confirm Password</label>
-            <input type="text" id="password2">
-            <div>
+            <input class="form-control" type="text" id="password2">
+            <div class="invalid-feedback">
                 Password does not match
             </div>
         </div>
+        </form>
 
     </div>
     <!-- ./container -->
