@@ -88,11 +88,11 @@
     <!--#####################START HERE###################-->
 
     <!-- BUTTON WITH COLLAPSE -->
-    <button>Read More</button>
+    <button class="btn btn-primary my-5" data-toggle="collapse" href="#example1">Read More</button>
 
-    <div>
-      <div>
-        <div>
+    <div class="collapse" id="example1">
+      <div class="card">
+        <div class="card-body">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit eius libero quisquam nobis explicabo vel non necessitatibus
           ipsum doloribus cupiditate voluptate recusandae quo autem error debitis, sed, minima repellendus commodi.
         </div>
@@ -100,18 +100,18 @@
     </div>
 
     <!-- ACCORDION -->
-    <div>
-      <div>
-        <div>
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="h1">
           <h5>
-            <a>
+            <a class="btn btn-link" data-toggle="collapse" data-target="#c1">
               Collapse One
             </a>
           </h5>
         </div>
 
-        <div>
-          <div>
+        <div class="collapse show" id="c1" data-parent="#accordion">
+          <div class="card-body">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis ea iste a doloremque, cumque, debitis eum vel ipsum architecto
             aut, recusandae totam ullam aperiam. Nesciunt expedita officiis animi quam corporis optio inventore facilis sint
             et nulla in, repellat debitis dolor at nisi quo, unde temporibus. Quos nisi nostrum officia, illo.
@@ -119,17 +119,17 @@
         </div>
       </div>
 
-      <div>
-        <div>
+      <div class="card">
+        <div class="card-header">
           <h5>
-            <a>
+            <a class="btn btn-link collapsed" data-toggle="collapse" data-target="#c2">
               Collapse Two
             </a>
           </h5>
         </div>
 
-        <div>
-          <div>
+        <div class="collapse" id="c2" data-parent="#accordion">
+          <div class="card-body">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis ea iste a doloremque, cumque, debitis eum vel ipsum architecto
             aut, recusandae totam ullam aperiam. Nesciunt expedita officiis animi quam corporis optio inventore facilis sint
             et nulla in, repellat debitis dolor at nisi quo, unde temporibus. Quos nisi nostrum officia, illo.
@@ -137,17 +137,17 @@
         </div>
       </div>
 
-      <div>
-        <div>
+      <div class="card">
+        <div class="card-header">
           <h5>
-            <a>
+            <a class="btn btn-link collapsed" data-target="#c3" data-toggle="collapse">
               Collapse Three
             </a>
           </h5>
         </div>
 
-        <div>
-          <div>
+        <div class="collapse" id="c3" data-parent="#accordion">
+          <div class="card-body">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis ea iste a doloremque, cumque, debitis eum vel ipsum architecto
             aut, recusandae totam ullam aperiam. Nesciunt expedita officiis animi quam corporis optio inventore facilis sint
             et nulla in, repellat debitis dolor at nisi quo, unde temporibus. Quos nisi nostrum officia, illo.
