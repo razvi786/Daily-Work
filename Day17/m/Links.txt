@@ -1,0 +1,4 @@
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+https://www.hongkiat.com/blog/dom-manipulation-javascript-methods/
+https://www.w3.org/TR/WD-DOM/introduction.html
+https://exploringjs.com/es6/ch_promises.html
