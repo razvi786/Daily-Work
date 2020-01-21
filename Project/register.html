@@ -8,9 +8,9 @@
     crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Admin Home Page</title>
+    <title>Registration Page</title>
     <style>
-    
+
     </style>
 </head>
 <body class="pt-5">
@@ -40,49 +40,31 @@
     </header>
 
     <div id="body" class="container mt-5">
-        <div class="row mb-5">
-            <div class="col-6 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='import.html'">
-                    <img src="images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Import Data</h4>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <div class="col-6 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='manage-company.html'">
-                    <img src="images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Manage Company</h4>
-                    </div>
-                </div>
-                
-            </div>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+              <form action="" class="form-group border p-5 border-curved mt-5 mb-5">
+                <p class="h1 text-muted text-uppercase text-center mb-3">Registration</p>
 
-            <div class="col-6 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='import.html'">
-                    <img src="images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Manage Exchanges</h4>
-                    </div>
-                </div>
-                
-            </div>
+                <label for="first-name">First Name:</label>
+                <input type="text" class="form-control" placeholder="Your First Name">
 
-            <div class="col-6 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='import.html'">
-                    <img src="images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Update IPO Details</h4>
-                    </div>
-                </div>
-                
+                <label for="last-name">Last Name:</label>
+                <input type="text" class="form-control" placeholder="Your Last Name">
+
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" placeholder="Your Username">
+
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" placeholder="Your Password">
+
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" class="form-control" placeholder="Confirm Password">
+
+                <p class="text-center w-100 my-2"><a href="login.html">Already Have an Account? Click Here to Login.</a></p>
+
+                <button class="btn btn-outline-success text-dark text-center form-control">Register</button>
+              </form>
             </div>
         </div>
     </div>
