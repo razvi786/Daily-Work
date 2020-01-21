@@ -8,9 +8,9 @@
     crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Admin Home Page</title>
+    <title>Update IPO</title>
     <style>
-    
+
     </style>
 </head>
 <body class="pt-5">
@@ -40,49 +40,45 @@
     </header>
 
     <div id="body" class="container mt-5">
-        <div class="row mb-5">
-            <div class="col-6 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='import.html'">
-                    <img src="images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Import Data</h4>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <div class="col-6 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='manage-company.html'">
-                    <img src="images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Manage Company</h4>
-                    </div>
-                </div>
-                
-            </div>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+              <form action="" class="form-group border p-5 border-curved mt-5">
+                <p class="h1 text-muted text-uppercase text-center mb-4">Update IPO</p>
+             
 
-            <div class="col-6 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='manage-stock-exchanges.html'">
-                    <img src="images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Manage Exchanges</h4>
-                    </div>
-                </div>
-                
-            </div>
+                <label for="username">Company Name:</label>
+                <select name="company" id="" class="form-control">
+                    <option value="apple">Apple</option>
+                    <option value="microsoft">Microsoft</option>
+                    <option value="google">Google</option>
+                </select>
 
-            <div class="col-6 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='add-ipo.html'">
-                    <img src="images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Add IPO Details</h4>
+                <label for="username">Stock Exchange:</label>
+                <select class="form-control" name="stock-exchange" id="">
+                    <option value="bse">BSE</option>
+                    <option value="nse">NSE</option>
+                </select>
+
+                <label for="username">Price per Share:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <i class="fas fa-rupee-sign input-group-text"></i>
                     </div>
+                    <input type="number" class="form-control" placeholder="Price in Rupees">
                 </div>
-                
+
+                <label for="username">No. of Shares:</label>
+                <input type="number" class="form-control" placeholder="Total Number of Shares">
+
+                <label for="username">Open Date-Time:</label><br>
+                <input class="form-control" type="datetime-local" name="datetime" id="">
+
+                <label for="username">Remarks:</label>
+                <textarea class="form-control mb-4" name="brief" id="" cols="30" rows="3" placeholder="Remarks about this IPO"></textarea>
+
+                <button class="btn btn-outline-success text-dark text-center form-control">Update IPO</button>
+              </form>
             </div>
         </div>
     </div>
@@ -94,7 +90,7 @@
 
     <footer class="footer bg-secondary p-3 container-fluid">
         <div class="row">
-            <div class="col-3 text-center">
+            <div class="col-3 text-right">
                 <i class="fas fa-copyright fa-2x text-light mx-2"></i>
             </div>
             <div class="col-6 text-center">

@@ -8,9 +8,9 @@
     crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Admin Home Page</title>
+    <title>Add Company</title>
     <style>
-    
+
     </style>
 </head>
 <body class="pt-5">
@@ -40,49 +40,43 @@
     </header>
 
     <div id="body" class="container mt-5">
-        <div class="row mb-5">
-            <div class="col-6 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='import.html'">
-                    <img src="images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Import Data</h4>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <div class="col-6 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='manage-company.html'">
-                    <img src="images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Manage Company</h4>
-                    </div>
-                </div>
-                
-            </div>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+              <form action="" class="form-group border p-5 border-curved mt-5">
+                <p class="h1 text-muted text-uppercase text-center mb-4">Company</p>
+             
 
-            <div class="col-6 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='manage-stock-exchanges.html'">
-                    <img src="images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Manage Exchanges</h4>
-                    </div>
-                </div>
-                
-            </div>
+                <label for="username">Company Name:</label>
+                <input type="text" class="form-control" placeholder="Name of Company">
 
-            <div class="col-6 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='add-ipo.html'">
-                    <img src="images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Add IPO Details</h4>
-                    </div>
-                </div>
-                
+                <label for="username">Turnover:</label>
+                <input type="text" class="form-control" placeholder="Company Turnover">
+
+                <label for="username">CEO:</label>
+                <input type="text" class="form-control" placeholder="CEO of Company">
+
+                <label for="username">Board of Director:</label>
+                <input type="text" class="form-control mb-4" placeholder="Board of Director of Company">
+
+                <label for="username">Listed in Stock Exchanges:</label><br>
+                <small class="text-info">Hold [Ctrl] to Select Multiple Stock Exchanges</small>
+                <select class="form-control" name="listed" id="" multiple size="2">
+                    <option value="bse">BSE</option>
+                    <option value="nse">NSE</option>
+                </select>
+
+                <label for="username">Sector:</label>
+                <input type="text" class="form-control" placeholder="Name of Sector">
+
+                <label for="username">Brief:</label>
+                <textarea class="form-control" name="brief" id="" cols="30" rows="3" placeholder="Brief Information about Company"></textarea>
+
+                <label for="username">Stock Code:</label>
+                <input type="text" class="form-control mb-4" placeholder="Unique Stock Code">
+
+                <button class="btn btn-outline-success text-dark text-center form-control">Add Company</button>
+              </form>
             </div>
         </div>
     </div>
@@ -94,7 +88,7 @@
 
     <footer class="footer bg-secondary p-3 container-fluid">
         <div class="row">
-            <div class="col-3 text-center">
+            <div class="col-3 text-right">
                 <i class="fas fa-copyright fa-2x text-light mx-2"></i>
             </div>
             <div class="col-6 text-center">

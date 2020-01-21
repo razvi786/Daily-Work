@@ -8,9 +8,9 @@
     crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Admin Home Page</title>
+    <title>Import Data</title>
     <style>
-    
+
     </style>
 </head>
 <body class="pt-5">
@@ -40,52 +40,42 @@
     </header>
 
     <div id="body" class="container mt-5">
-        <div class="row mb-5">
-            <div class="col-6 my-3">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+              <div class="form-group border p-5 border-curved mt-5">
+                <p class="h1 text-muted text-uppercase text-center mb-4">Deactivate</p>
+             
+                <label for="company">Select Company:</label>
+                <select class="form-control mb-4" name="company" id="">
+                    <option value="apple">Apple</option>
+                    <option value="microsoft">Microsoft</option>
+                    <option value="google">Google</option>
+                </select>
                 
-                <div class="card my-card border border-curved text-center" onclick="location.href='import.html'">
-                    <img src="images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Import Data</h4>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <div class="col-6 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='manage-company.html'">
-                    <img src="images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Manage Company</h4>
-                    </div>
-                </div>
+                <button class="btn btn-danger text-white text-center form-control" data-toggle="modal" data-target="#deactivate">Deactivate</button>
                 
             </div>
-
-            <div class="col-6 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='manage-stock-exchanges.html'">
-                    <img src="images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Manage Exchanges</h4>
-                    </div>
-                </div>
-                
-            </div>
-
-            <div class="col-6 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='add-ipo.html'">
-                    <img src="images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Add IPO Details</h4>
-                    </div>
-                </div>
-                
             </div>
         </div>
     </div>
+
+    <div id="deactivate" class="modal fade" tabindex="-1">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Are You Sure You Want To Deactivate This Company?</h5>
+              <button class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-block btn-danger text-white" onclick="location.href='manage-company.html'">Confirm</button>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-block btn-outline-warning" data-dismiss="modal">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
    
 
 
@@ -94,7 +84,7 @@
 
     <footer class="footer bg-secondary p-3 container-fluid">
         <div class="row">
-            <div class="col-3 text-center">
+            <div class="col-3 text-right">
                 <i class="fas fa-copyright fa-2x text-light mx-2"></i>
             </div>
             <div class="col-6 text-center">
