@@ -1,0 +1,17 @@
+{
+  "name": "com.cts",
+  "version": "2.1.1",
+  "description": "This is CLI Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "ng test"
+  },
+  "keywords": [
+    "CTS"
+  ],
+  "author": "Anonymous",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^3.7.5"
+  }
+}
