@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <div>
+      <ul class="list-unstyled">
+        <li class="display-4" onclick="win(this)">John Cena</li>
+        <li onclick="win(this)">Randy Orton</li>
+        <li onclick="win(this)">Goldberg</li>
+        <li onclick="win(this)">Brock Lesnar</li>
+        <li onclick="win(this)">Rock</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    function win(obj){
+      return obj.className+=' display-4';
+    }
+  </script>
+</body>
+</html>

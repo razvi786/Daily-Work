@@ -4,3 +4,24 @@
   <button id="make-me-yellow" class="form-control btn btn-primary" (click)="makeYellow()" >Make Me Yellow!</button>
   <button id="hide-me" class="form-control btn btn-primary" (click)="hideMe()">Hide Me!</button>
 </div>
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Speed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars" class="hovered">
+      <td>{{car.name}}</td>
+      <td>{{car.price}}</td>
+      <td>{{car.speed}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="display-3" appRed>Hello This is Red</p>

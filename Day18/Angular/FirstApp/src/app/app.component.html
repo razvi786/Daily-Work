@@ -24,10 +24,15 @@
   </div>
 </div>
 
+<p class="display-1">{{messageFromChild}}</p>
+<p class="display-1">{{complaintFromTeacher}}</p>
+<h1 *appNotIf="true">True</h1><h1 *appNotIf="false">False</h1>
+
+
 <div class="container">
   <div class="row">
     <div class="col-6 mx-auto">
-      <app-edit-user [user]="selectedUser"></app-edit-user>
+      <!-- <app-edit-user [user]="selectedUser"></app-edit-user> -->
     </div>
   </div>
 </div>
@@ -35,7 +40,23 @@
 <div class="container">
   <div class="row">
     <div class="col-6 mx-auto">
-      <app-practise [user]="selectedUser"></app-practise>
+      <!-- <app-practise [user]="selectedUser" [cars]="cars" (childMessage)="setMessage($event)" (complaint)="setComplaint($this)"></app-practise> -->
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <!-- <app-name-editor></app-name-editor> -->
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <app-profile-editor></app-profile-editor>
     </div>
   </div>
 </div>
