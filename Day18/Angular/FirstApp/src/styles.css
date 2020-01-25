@@ -4,3 +4,6 @@
 .hovered:hover{
   cursor: pointer;
 }
+.table>caption{
+  caption-side: top;
+}
