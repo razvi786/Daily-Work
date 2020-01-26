@@ -1,0 +1,8 @@
+<form >
+<div>
+  <label class="label" for="name">Name:</label>
+  <input type="text" [formControl]="test">
+  <p>{{test.value}}</p>
+  <button class="btn" (click)="updateName()">Missing Mom</button>
+</div>
+</form>

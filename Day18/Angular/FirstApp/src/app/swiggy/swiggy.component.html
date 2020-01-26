@@ -1,0 +1,24 @@
+<div>
+  <table class="table">
+    <thead>
+      <th>Name:</th>
+      <th>Price:</th>
+      <th>Restaurant:</th>
+      <th>Quantity:</th>
+    </thead>
+    <tbody>
+      <td>{{foodItem.name}}</td>
+      <td>{{foodItem.price}}</td>
+      <td>{{foodItem.restaurant}}</td>
+      <td>{{foodItem.quantity}}</td>
+    </tbody>
+  </table>
+  <select name="" id="" [(ngModel)]="foodItem.id">
+    <option value="0">Pizza</option>
+    <option value="1">Chapati</option>
+    <option value="2">Biryani</option>
+    <option value="3">Shawarma</option>
+    <option value="4">Mandi</option>
+  </select>
+  <p class="text-center display-4">{{foodItem.name}} is Delivered</p>
+</div>

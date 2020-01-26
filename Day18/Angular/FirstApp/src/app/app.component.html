@@ -1,105 +1,74 @@
-
-    <header>
-        <nav class="navbar navbar-expand navbar-light bg-light fixed-top">
-            <a class="navbar-brand" href="">
-                <img class="avatar" src="../assets/images/syed-logo.svg" alt="Stock Logo">
-            </a>
-            <div class="">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a href="admin-home-page.html" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="login.html" class="nav-link">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="register.html" class="nav-link">Register</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="float-right">
-                <a class="nav-link text-danger float-right" href="logout.html">Logout</a>
-            </div>
-        </nav>
-    </header>
-
-    <div id="body" class="container-fluid mt-5">
-        <div class="row mb-5">
-            <div class="col-3 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='import.html'">
-                    <img src="../assets/images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Import Data</h4>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <div class="col-3 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='manage-company.html'">
-                    <img src="../assets/images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Manage Company</h4>
-                    </div>
-                </div>
-                
-            </div>
-
-            <div class="col-3 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='manage-stock-exchanges.html'">
-                    <img src="../assets/images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Manage Exchanges</h4>
-                    </div>
-                </div>
-                
-            </div>
-
-            <div class="col-3 my-3">
-                
-                <div class="card my-card border border-curved text-center" onclick="location.href='add-ipo.html'">
-                    <img src="../assets/images/import.jpg" alt="" class="card-img-top mx-auto">
-                    <div class="card-body">
-                        <h4 class="card-title display-4">Add IPO Details</h4>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-9 mx-auto">
+      <table class="table">
+        <caption class="text-center h2 text-uppercase" style="caption-side: top;">Users Information</caption>
+        <thead>
+          <th>id</th>
+          <th>name</th>
+          <th>email</th>
+          <th>phone</th>
+        </thead>
+        <tbody >
+          <tr class="hovered" *ngFor="let user of users"
+          [class.table-dark]="user === selectedUser"
+          (click)="onSelect(user)">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phone}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-   
+  </div>
+</div>
+
+<a routerLink="delivery">Start Delivery Service</a> -->
 
 
-    
+<!-- <p class="display-1">{{messageFromChild}}</p>
+<p class="display-1">{{complaintFromTeacher}}</p>
+<h1 *appNotIf="true">True</h1><h1 *appNotIf="false">False</h1> -->
 
 
-    <footer class="footer bg-secondary p-3 container-fluid">
-        <div class="row">
-            <div class="col-3 text-center">
-                <i class="fas fa-copyright fa-2x text-light mx-2"></i>
-            </div>
-            <div class="col-6 text-center">
-                <p class="font-italic text-light h5">Created by: Syed Ehsan Ali Razvi</p>
-            </div>
-            <div class="col">
-                <a href="">
-                    
-                </a>
-                <a href="">
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <!-- <app-edit-user [user]="selectedUser"></app-edit-user> -->
+    </div>
+  </div>
+</div>
 
-                </a>
-                <a href="">
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <!-- <app-practise [user]="selectedUser" [cars]="cars" (childMessage)="setMessage($event)" (complaint)="setComplaint($this)"></app-practise> -->
+    </div>
+  </div>
+</div>
 
-                </a>
-                <a href="">
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <!-- <app-name-editor></app-name-editor> -->
+    </div>
+  </div>
+</div>
 
-                </a>
-            </div>
-        </div>
-    </footer>
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <!-- <!-- <app-profile-editor></app-profile-editor> -->
+    </div>
+  </div>
+</div>
 
 
-    
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <app-swiggy></app-swiggy>
+    </div>
+  </div>
+</div>
