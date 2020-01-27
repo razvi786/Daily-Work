@@ -38,6 +38,10 @@ public class StreamAPI {
 		List<Employee> increaseSalary=employees.stream().map(emp -> {emp.setSalary(emp.getSalary()*1.1); return emp;}).collect(Collectors.toList());
 		System.out.println("Salary Increased 10 Percent: ");
 		increaseSalary.forEach(System.out::println);
+		
+		List<Employee> age22=employees.stream().filter(emp->emp.getAge()==22).collect(Collectors.toList());
+		System.out.println("Age 22:");
+		age22.forEach(System.out::println);
 				
 	}
 

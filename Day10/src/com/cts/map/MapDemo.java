@@ -11,7 +11,7 @@ public class MapDemo {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		
 		TreeMap<String, Integer> map=new TreeMap<String, Integer>();
 		map.put("Java", 8000);
 		map.put("Python", 5000);

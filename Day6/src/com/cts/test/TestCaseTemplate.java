@@ -20,7 +20,7 @@ public class TestCaseTemplate {
 	
 	@Test
 	public void TestCase1() {
-		assertEquals();
+//		assertEquals();
 	}
 
 }
