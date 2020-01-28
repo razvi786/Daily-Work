@@ -13,6 +13,9 @@ import { ReactiveFormsModule} from '@angular/forms';
 import { NameEditorComponent } from './name-editor/name-editor.component';
 import { ProfileEditorComponent } from './profile-editor/profile-editor.component';
 import { SwiggyComponent } from './swiggy/swiggy.component';
+import {HttpClientModule} from '@angular/common/http';
+import { DisplayUsersComponent } from './display-users/display-users.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +27,16 @@ import { SwiggyComponent } from './swiggy/swiggy.component';
     NotIfDirective,
     NameEditorComponent,
     ProfileEditorComponent,
-    SwiggyComponent
+    SwiggyComponent,
+    DisplayUsersComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

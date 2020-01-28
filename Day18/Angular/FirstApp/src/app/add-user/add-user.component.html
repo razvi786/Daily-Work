@@ -1,0 +1,24 @@
+<div>
+  <div class="row">
+
+      <div class="col">
+        <form [formGroup]="registerUser" class="form-group border p-3 border-curved mt-5">
+          <p class="h5 text-muted text-uppercase text-center mb-3 ">Add User</p>
+
+          <label for="id">Id:</label>
+          <input name="id" type="number" class="form-control" formControlName="id" placeholder="Your ID">
+
+          <label for="name">Name:</label>
+          <input name="name" type="text" class="form-control" formControlName="name" placeholder="Your Name">
+
+          <label for="email">Email:</label>
+          <input name="email" type="email" class="form-control" formControlName="email" placeholder="Your Email">
+
+          <label for="phone">Mobile Number:</label>
+          <input name="phone" type="number" class="form-control" formControlName="phone" placeholder="Your Mobile Number">
+
+          <button type="submit" class="btn btn-outline-success text-dark text-center form-control mt-5" (click)="addUser()"  [disabled]="!registerUser.valid">Register</button>
+        </form>
+      </div>
+  </div>
+</div>
