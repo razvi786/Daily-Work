@@ -4,13 +4,15 @@ import { RegisterComponent } from './user/register/register.component';
 import { SwiggyComponent } from './swiggy/swiggy.component';
 import { DisplayUsersComponent } from './display-users/display-users.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { PipesComponent } from './pipes/pipes.component';
 
 
 const routes: Routes = [
   {path:'register', component : RegisterComponent },
   {path:'delivery',component: SwiggyComponent},
   {path:'display',component:DisplayUsersComponent},
-  {path:'add-user',component:AddUserComponent}
+  {path:'add-user',component:AddUserComponent},
+  {path:'pipes',component:PipesComponent}
 ];
 
 @NgModule({

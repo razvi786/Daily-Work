@@ -16,6 +16,8 @@ import { SwiggyComponent } from './swiggy/swiggy.component';
 import {HttpClientModule} from '@angular/common/http';
 import { DisplayUsersComponent } from './display-users/display-users.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { PipesComponent } from './pipes/pipes.component';
+import { CustomPipe } from './custom.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { AddUserComponent } from './add-user/add-user.component';
     ProfileEditorComponent,
     SwiggyComponent,
     DisplayUsersComponent,
-    AddUserComponent
+    AddUserComponent,
+    PipesComponent,
+    CustomPipe
   ],
   imports: [
     BrowserModule,

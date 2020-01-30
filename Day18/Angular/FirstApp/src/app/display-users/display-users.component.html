@@ -11,10 +11,10 @@
           <th>Actions</th>
         </thead>
         <tbody >
-          <tr class="hovered" *ngFor="let user of users">
+          <tr class="hovered" *ngFor="let user of users | slice:2">
             <td>{{user.id}}</td>
             <td>{{user.name}}</td>
-            <td>{{user.email}}</td>
+            <td>{{user.email | slice:10}}</td>
             <td>{{user.phone}}</td>
             <td><button class="btn btn-danger" (click)="deleteUser(user)">Delete</button></td>
           </tr>

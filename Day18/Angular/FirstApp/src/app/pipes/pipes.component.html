@@ -1,0 +1,42 @@
+<div>
+  <h2>Date Pipe: </h2>
+  <p>Birthday: {{dob}}</p>
+  <p>Birthday: {{dob | date: 'full'}}</p>
+  <p>Birthday: {{dob | date}}</p>
+  <p>Birthday: {{dob | date: 'dd/MM/yyyy'}}</p>
+</div>
+<div>
+  <h2>Currency Pipe: </h2>
+  <p>Currency: {{price}}</p>
+  <p>Currency: {{price | currency}}</p>
+  <p>Currency: {{price | currency: 'INR'}}</p>
+  <p>Currency: {{price | currency: 'GBP'}}</p>
+</div>
+<div>
+  <h2>Number Pipe: </h2>
+  <p>Salary: {{salary}}</p>
+  <p>Salary: {{salary | number}}</p>
+  <p>Salary: {{salary | number:'2.2-2'}}</p>
+  <p>Salary: {{salary | number: '1.1-1'}}</p>
+</div>
+<div>
+  <h2>JSON Pipe:</h2>
+  <p>JSON: {{user | json}}</p>
+</div>
+<div>
+  <h2>Case Pipes: </h2>
+  <p>Uppercase: {{name | uppercase}}</p>
+  <p>Lowercase: {{name | lowercase}}</p>
+  <p>Titlecase: {{name | titlecase}}</p>
+</div>
+<div>
+  <h2>Custom Pipe: </h2>
+  <p>5 power 3: {{5 | custom:3}}</p>
+  <p>Length of Name: {{name | custom}}</p>
+</div>
+<div>
+  <h2>Power Calculator: </h2>
+  <input type="number" [(ngModel)]="digit"><br>
+  <input type="number" [(ngModel)]="power">
+  <p>Power: {{digit | custom:power}}</p>
+</div>
