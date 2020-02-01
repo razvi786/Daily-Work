@@ -7,20 +7,20 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.cts.activity.bean.User;
-import com.cts.activity.dao.UserDAO;
+import com.cts.activity.bean.StockPrice;
+import com.cts.activity.dao.StockPriceDAO;
 import com.cts.activity.hibernate.HibernateUtil;
 
-public class UserDAOImpl implements UserDAO{
-	
+public class StockPriceDAOImpl implements StockPriceDAO {
+
 	SessionFactory sessionFactory=HibernateUtil.getSessionFactory();
-
+	
 	@Override
-	public boolean saveUser(User user) {
+	public boolean saveStockPrice(StockPrice stockPrice) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			session.save(user);
+			session.save(stockPrice);
 			tx.commit();
 			session.close();
 			return true;
@@ -31,11 +31,11 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public boolean updateUser(User user) {
+	public boolean updateStockPrice(StockPrice stockPrice) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			session.update(user);
+			session.update(stockPrice);
 			tx.commit();
 			session.close();
 			return true;
@@ -46,11 +46,11 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public boolean removeUser(User user) {
+	public boolean deleteStockPrice(StockPrice stockPrice) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			session.delete(user);
+			session.delete(stockPrice);
 			tx.commit();
 			session.close();
 			return true;
@@ -61,14 +61,14 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public User getUserById(int id) {
+	public StockPrice getStockPriceById(int id) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			User user=session.get(User.class, id);
+			StockPrice stockPrice=session.get(StockPrice.class, id);
 			tx.commit();
 			session.close();
-			return user;
+			return stockPrice;
 		} catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return null;
@@ -77,14 +77,14 @@ public class UserDAOImpl implements UserDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> getAllUsers() {
+	public List<StockPrice> displayAllStockPrices() {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			List<User> users=session.createQuery("FROM User").list();
+			List<StockPrice> stockPrices=session.createQuery("FROM StockPrice").list();
 			tx.commit();
 			session.close();
-			return users;
+			return stockPrices;
 		} catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return null;

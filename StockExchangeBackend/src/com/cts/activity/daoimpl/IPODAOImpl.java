@@ -7,20 +7,20 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.cts.activity.bean.User;
-import com.cts.activity.dao.UserDAO;
+import com.cts.activity.bean.IPO;
+import com.cts.activity.dao.IPODAO;
 import com.cts.activity.hibernate.HibernateUtil;
 
-public class UserDAOImpl implements UserDAO{
-	
+public class IPODAOImpl implements IPODAO{
+
 	SessionFactory sessionFactory=HibernateUtil.getSessionFactory();
-
+	
 	@Override
-	public boolean saveUser(User user) {
+	public boolean saveIPO(IPO ipo) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			session.save(user);
+			session.save(ipo);
 			tx.commit();
 			session.close();
 			return true;
@@ -31,11 +31,11 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public boolean updateUser(User user) {
+	public boolean updateIPO(IPO ipo) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			session.update(user);
+			session.update(ipo);
 			tx.commit();
 			session.close();
 			return true;
@@ -46,11 +46,11 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public boolean removeUser(User user) {
+	public boolean deleteIPO(IPO ipo) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			session.delete(user);
+			session.delete(ipo);
 			tx.commit();
 			session.close();
 			return true;
@@ -61,14 +61,14 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public User getUserById(int id) {
+	public IPO getIPOById(int id) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			User user=session.get(User.class, id);
+			IPO ipo=session.get(IPO.class, id);
 			tx.commit();
 			session.close();
-			return user;
+			return ipo;
 		} catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return null;
@@ -77,18 +77,20 @@ public class UserDAOImpl implements UserDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> getAllUsers() {
+	public List<IPO> displayAllIPOs() {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			List<User> users=session.createQuery("FROM User").list();
+			List<IPO> ipos=session.createQuery("FROM IPO").list();
 			tx.commit();
 			session.close();
-			return users;
+			return ipos;
 		} catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return null;
 		}
 	}
+	
+	
 
 }

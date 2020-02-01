@@ -7,69 +7,70 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.cts.activity.bean.User;
-import com.cts.activity.dao.UserDAO;
+import com.cts.activity.bean.Company;
+import com.cts.activity.dao.CompanyDAO;
 import com.cts.activity.hibernate.HibernateUtil;
 
-public class UserDAOImpl implements UserDAO{
-	
+public class CompanyDAOImpl implements CompanyDAO{
+
 	SessionFactory sessionFactory=HibernateUtil.getSessionFactory();
-
+	
 	@Override
-	public boolean saveUser(User user) {
+	public boolean saveCompany(Company company) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			session.save(user);
+			session.save(company);
 			tx.commit();
 			session.close();
 			return true;
-		} catch (HibernateException e) {
+		}catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return false;
 		}
 	}
 
 	@Override
-	public boolean updateUser(User user) {
+	public boolean updateCompany(Company company) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			session.update(user);
+			session.update(company);
 			tx.commit();
 			session.close();
 			return true;
-		} catch (HibernateException e) {
+		}catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return false;
 		}
 	}
 
 	@Override
-	public boolean removeUser(User user) {
+	public boolean removeCompany(Company company) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			session.delete(user);
+			session.delete(company);
 			tx.commit();
 			session.close();
 			return true;
-		} catch (HibernateException e) {
+		}catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return false;
 		}
 	}
 
 	@Override
-	public User getUserById(int id) {
+	public Company getCompanyById(int id) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			User user=session.get(User.class, id);
+			Company company=session.get(Company.class, id);
+			session.update(company);
 			tx.commit();
 			session.close();
-			return user;
-		} catch (HibernateException e) {
+			return company;
+		}catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return null;
 		}
@@ -77,15 +78,15 @@ public class UserDAOImpl implements UserDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> getAllUsers() {
+	public List<Company> getAllCompanies() {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			List<User> users=session.createQuery("FROM User").list();
+			List<Company> companies=session.createQuery("FROM Company").list();
 			tx.commit();
 			session.close();
-			return users;
-		} catch (HibernateException e) {
+			return companies;
+		}catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return null;
 		}

@@ -7,20 +7,20 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.cts.activity.bean.User;
-import com.cts.activity.dao.UserDAO;
+import com.cts.activity.bean.Sector;
+import com.cts.activity.dao.SectorDAO;
 import com.cts.activity.hibernate.HibernateUtil;
 
-public class UserDAOImpl implements UserDAO{
+public class SectorDAOImpl implements SectorDAO{
 	
 	SessionFactory sessionFactory=HibernateUtil.getSessionFactory();
 
 	@Override
-	public boolean saveUser(User user) {
+	public boolean saveSector(Sector sector) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			session.save(user);
+			session.save(sector);
 			tx.commit();
 			session.close();
 			return true;
@@ -31,11 +31,11 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public boolean updateUser(User user) {
+	public boolean updateSector(Sector sector) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			session.update(user);
+			session.update(sector);
 			tx.commit();
 			session.close();
 			return true;
@@ -46,11 +46,11 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public boolean removeUser(User user) {
+	public boolean removeSector(Sector sector) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			session.delete(user);
+			session.delete(sector);
 			tx.commit();
 			session.close();
 			return true;
@@ -61,14 +61,14 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public User getUserById(int id) {
+	public Sector getSectorById(int id) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			User user=session.get(User.class, id);
+			Sector sector=session.get(Sector.class, id);
 			tx.commit();
 			session.close();
-			return user;
+			return sector;
 		} catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return null;
@@ -77,14 +77,14 @@ public class UserDAOImpl implements UserDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> getAllUsers() {
+	public List<Sector> displayAllSectors() {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			List<User> users=session.createQuery("FROM User").list();
+			List<Sector> sectors=session.createQuery("FROM Sector").list();
 			tx.commit();
 			session.close();
-			return users;
+			return sectors;
 		} catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return null;

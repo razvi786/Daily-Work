@@ -7,20 +7,20 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.cts.activity.bean.User;
-import com.cts.activity.dao.UserDAO;
+import com.cts.activity.bean.StockExchange;
+import com.cts.activity.dao.StockExchangeDAO;
 import com.cts.activity.hibernate.HibernateUtil;
 
-public class UserDAOImpl implements UserDAO{
-	
+public class StockExchangeDAOImpl implements StockExchangeDAO{
+
 	SessionFactory sessionFactory=HibernateUtil.getSessionFactory();
-
+	
 	@Override
-	public boolean saveUser(User user) {
+	public boolean saveStockExchange(StockExchange stockExchange) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			session.save(user);
+			session.save(stockExchange);
 			tx.commit();
 			session.close();
 			return true;
@@ -31,11 +31,11 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public boolean updateUser(User user) {
+	public boolean updateStockExchange(StockExchange stockExchange) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			session.update(user);
+			session.update(stockExchange);
 			tx.commit();
 			session.close();
 			return true;
@@ -46,11 +46,11 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public boolean removeUser(User user) {
+	public boolean removeStockExchange(StockExchange stockExchange) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			session.delete(user);
+			session.delete(stockExchange);
 			tx.commit();
 			session.close();
 			return true;
@@ -61,14 +61,15 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public User getUserById(int id) {
+	public StockExchange getStockExchangeById(int id) {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			User user=session.get(User.class, id);
+			StockExchange stockExchange=session.get(StockExchange.class, id);
+			session.update(stockExchange);
 			tx.commit();
 			session.close();
-			return user;
+			return stockExchange;
 		} catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return null;
@@ -77,14 +78,14 @@ public class UserDAOImpl implements UserDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> getAllUsers() {
+	public List<StockExchange> displayAllStockExchanges() {
 		try {
 			Session session=sessionFactory.openSession();
 			Transaction tx=session.beginTransaction();
-			List<User> users=session.createQuery("FROM User").list();
+			List<StockExchange> stockExchanges=session.createQuery("FROM StockExchange").list();
 			tx.commit();
 			session.close();
-			return users;
+			return stockExchanges;
 		} catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return null;
