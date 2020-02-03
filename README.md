@@ -18,5 +18,6 @@ The day directory is itself a project, just select open project in eclipse and s
 #Generate Primary Key
 - https://thoughts-on-java.org/jpa-generate-primary-keys/
 #Mappings in hibernate
+- https://www.tutorialspoint.com/hibernate/hibernate_many_to_one_mapping.htm
 #Criteria and Restrictions
 #Named Parameter
