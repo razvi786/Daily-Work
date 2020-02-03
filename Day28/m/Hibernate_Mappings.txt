@@ -1,0 +1,388 @@
+One-to-one mapping using foreign key association
+================================================
+	In a one-to-one relationship, each row in the first table is linked to exactly one row in another table. If this relationship is applied, we can say that both the tables have an exactly equal number of rows any time.
+	
+	Here, we will consider the Person and PassportDetail classes.
+PassportDetail.java:
+--------------------	
+@Entity
+@Table(name = "passport_detail")
+public class PassportDetail {
+  @Id
+  @GeneratedValue
+  @Column(name = "id")
+  private long id;
+
+  @Column(name = "passportno")
+  private String passportNo;
+  //Getters and Setters
+}
+	
+Person.java
+-----------
+@Entity
+@Table(name = "person")
+public class Person {
+
+  @Id
+  @GeneratedValue
+  @Column(name = "id")
+  private long id;
+
+  @Column(name = "name")
+  private String name;
+
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "passport_detail_id")
+  private PassportDetail passportDetail;
+  //Getters & Setters
+}
+	
+Inserting a record
+-------------------
+  PassportDetail detail = new PassportDetail();
+  detail.setPassportNo("G51546645");
+
+  Person person = new Person();
+  person.setName("Vishal");
+  person.setPassportDetail(detail);
+
+  Transaction transaction = session.getTransaction();
+  transaction.begin();
+
+  session.save(person);
+  transaction.commit();
+  
+Output:
+-------
+  Hibernate: insert into passport_detail (passportno) values (?)
+  Hibernate: insert into person (name, passport_detail_id) values (?,?)
+  
+How it works
+-------------
+	Here, the one-to-one relationship is not directly known to the database, but it is created for simplicity purposes and is useful to define a user-specific scenario. This means that each Person has one and only one PassportDetail object, and PassportDetail does not exist without Person.
+
+   As we used the @OneToOne annotation in the preceding code, hibernate will consider that we want to have a one-to-one relationship between both the tables.
+   
+   cascade=CascadeType.ALL:
+
+	This option in the @OneToOne annotation shows that hibernate uses cascading for all database operations. Here, we save a Person record, but before saving a Person object, it saves a PassportDetail object because PassportDetail is referred to by the Person object. If the PassportDetail object is not persisted at the time of saving the Person object, and the appropriate CascadeType option is not used, it throws an error similar to "Exception in thread "main" org.hibernate.TransientObjectException: object references an unsaved transient instance - save the transient instance before flushing: "PassportDetail".
+
+	The @JoinColumn annotation is used to define the relationship between tables—in our case, between the person table and a column created with the name "passport_detail_id"—and it refers to the primary key of the " "passport_detail " table, which is "id".
+	
+	
+One-to-many mapping or many-to-one mapping
+===========================================
+	Here, we will create a different scenario for a better understanding of the relationship. We will take a look at the use of both one-to-many and many-to-one relationships in a single example.
+
+	Now, we will create a relationship between actor and movie tables, where one actor is associated with one movie, but one movie can be associated with multiple actors.
+	
+	We will create the classes and tables for Movie and Actor.
+	
+Movie.java
+----------
+@Entity
+@Table(name = "movie")
+public class Movie {
+
+  @Id
+  @GeneratedValue
+  @Column(name = "id")
+  private long id;
+
+  @Column(name = "name")
+  private String name;
+
+  @OneToMany(mappedBy = "movie")
+  private Set<Actor> actors;
+  //Getters & Setters
+}
+
+Actor.java
+----------
+@Entity
+@Table(name = "actor")
+public class Actor {
+
+  @Id
+  @GeneratedValue
+  @Column(name = "id")
+  private long id;
+
+  @Column(name = "actorname")
+  private String actorName;
+
+  @ManyToOne
+  @JoinColumn(name = "movie_id")
+  private Movie movie;
+  // Getters & Setters
+}
+
+Inserting a record
+-------------------
+Movie movie= new Movie();
+movie.setName("Furious 7");
+
+Actor actor1 = new Actor();
+actor1.setActorName("Vin Diesel");
+actor1.setMovie(movie);
+
+Actor actor2= new Actor();
+actor2.setActorName("Paul Walker");
+actor2.setMovie(movie);
+
+Transaction transaction = session.getTransaction();
+transaction.begin();
+session.save(movie);
+session.save(actor1);
+session.save(actor2);
+transaction.commit();
+
+Output:
+------
+Hibernate: insert into movie (name) values (?)
+Hibernate: insert into actor (actorname, movie_id) values (?,?)
+Hibernate: insert into actor (actorname, movie_id) values (?,?)
+
+Retrieving a record – many-to-one-mapping
+-----------------------------------------
+	Here, we will retrieve the Actor object and also the Movie object associated with it:
+	
+Criteria criteria = session.createCriteria(Actor.class);
+criteria.add(Restrictions.eq("actorName", "Paul Walker"));
+Actor actor = (Actor) criteria.uniqueResult();
+
+System.out.println(actor);
+System.out.println(actor.getMovie());
+
+Output:
+-------
+Actor
+ Id: 2
+ Name: Paul Walker
+Movie
+ Id: 1
+ Name: Furious 7
+ 
+Retrieving a record – one-to-many-mapping
+-----------------------------------------
+	Now, we will retrieve the Movie object and get the Actor object associated with that movie:
+	
+Criteria criteria = session.createCriteria(Movie.class);
+criteria.add(Restrictions.eq("id", 1L));
+Movie movie = (Movie) criteria.uniqueResult();
+System.out.println(movie);
+
+Set<Actor> actors = movie.getActors();
+for(Actor actor : actors){
+  System.out.println(actor);
+}
+
+Output:
+------
+Actor
+ Id: 1
+ Name: Vin Diesel
+Actor
+ Id: 2
+ Name: Paul Walker
+ 
+ 
+How it works
+ --------------
+	From the output, we can easily understand how this relationship works. Let's take a look at an option used in the previous example.
+
+	The option from the Movie class:
+	
+	@ManyToOne
+	@JoinColumn(name="movie_id")
+	private Movie movie;
+	
+	In the preceding code, we used the @ManyToOne annotation; it shows many actors associated with one movie. This side of the relationship is considered to be the owning side and is responsible for the update if we use bidirectional operations.
+
+	The option from the Actor class:
+	
+	@OneToMany(mappedBy = "movie")
+	private Set<Actor> actors;
+	
+	In the preceding code, we used mappedBy = "movie" with the @OneToMany annotation; @OneToMany shows that one movie is associated with multiple actors, mappedBy = "movie" shows that this is the nonowning side of the relationship, and you can get the parent object from the mappedBy movie entity.
+	
+Many-to-many mapping
+====================
+	This type of relationships seems like an open one, because a record from either side is related to another on the other side. Let's consider one scenario. Here, we will use the Developer and Technology classes. In this scenario, multiple developers can associate with multiple technologies and vice versa.
+	
+Developer.java
+--------------
+@Entity
+@Table(name = "developer")
+public class Developer {
+  @Id
+  @GeneratedValue
+  @Column(name = "id")
+  private long id;
+
+  @Column(name = "name")
+  private String name;
+
+  @ManyToMany(cascade = CascadeType.ALL)
+  private Set<Technology> technology;
+  // Getters & Setters
+}
+
+
+Technology.java
+---------------
+@Entity
+@Table(name = "technology")
+public class Technology {
+
+  @Id
+  @GeneratedValue
+  @Column(name = "id")
+  private long id;
+
+  @Column(name = "language")
+  private String language;
+
+  @Column(name = "expertise")
+  private String expertise;
+
+  @ManyToMany(mappedBy = "technology")
+  private Set<Developer> developer;
+  // Getters & Setters
+}
+
+As a part of the scenario, we will create three Developer objects and two Technology objects, where all three developers have knowledge on two technologies.
+
+Inserting a record:
+-------------------
+
+Developer developer1= new Developer();
+developer1.setName("Vishal");
+
+Developer developer2= new Developer();
+developer2.setName("Yogesh");
+
+Developer developer3= new Developer();
+developer3.setName("Virendra");
+
+Technology technology1=new Technology();
+technology1.setLanguage("Java");
+technology1.setExpertise("Intermediate");
+
+Technology technology2=new Technology();
+technology2.setLanguage("Bigdata");
+technology2.setExpertise("Expert");
+
+Set<Technology> technologies= new HashSet<Technology>();
+technologies.add(technology1);
+technologies.add(technology2);
+
+developer1.setTechnology(technologies);
+developer2.setTechnology(technologies);
+developer3.setTechnology(technologies);
+
+Transaction transaction = session.getTransaction();
+transaction.begin();
+session.save(developer1);
+session.save(developer2);
+session.save(developer3);
+transaction.commit();
+
+Output:
+-------
+
+Hibernate: insert into developer (name) values (?)
+Hibernate: insert into technology (expertise, language) values (?,?)
+Hibernate: insert into technology (expertise, language) values (?,?)
+Hibernate: insert into developer (name) values (?)
+Hibernate: insert into developer (name) values (?)
+Hibernate: insert into developer_technology (developer_id, technology_id) values (?,?)
+Hibernate: insert into developer_technology (developer_id, technology_id) values (?,?)
+Hibernate: insert into developer_technology (developer_id, technology_id) values (?,?)
+Hibernate: insert into developer_technology (developer_id, technology_id) values (?,?)
+Hibernate: insert into developer_technology (developer_id, technology_id) values (?,?)
+Hibernate: insert into developer_technology (developer_id, technology_id) values (?,?)
+
+Retrieving a record using Developer with Technology
+----------------------------------------------------
+Here, we will query the Developer object and then try to get all the Technology objects that Developer knows:
+
+Criteria criteria = session.createCriteria(Developer.class);
+criteria.add(Restrictions.eq("id", 1L));
+
+Developer developer = (Developer) criteria.uniqueResult();
+System.out.println(developer.toString());
+
+Set<Technology> tech = developer.getTechnology();
+for(Technology technology : tech){
+  System.out.println(technology.toString());
+}
+
+Output:
+-------
+Developer
+  Id: 1
+  Name: Vishal
+  
+Technology
+  Id: 1
+  Language: Java
+  Expertise: Intermediate
+Technology
+  Id: 2
+  Language: Bigdata
+  Expertise: Expert
+  
+  
+Retrieving a record using Technology with Developers
+----------------------------------------------------
+
+Now, we will perform a reverse process; from the Technology object, we will try to get Developers that have knowledge of that Technology. Execute the following code:
+
+Criteria criteria = session.createCriteria(Technology.class);
+criteria.add(Restrictions.eq("id", 1L));
+
+Technology technology= (Technology) criteria.uniqueResult();
+
+System.out.println(technology);
+Set<Developer> devs = technology.getDeveloper();
+for(Developer developer : devs){
+  System.out.println(developer.toString());
+}
+
+Output
+--------
+
+Technology
+  Id: 1
+  Language: Java
+  Expertise: Intermediate
+
+Developer
+  Id: 2
+  Name: Yogesh
+Developer
+  Id: 3
+  Name: Virendra
+Developer
+  Id: 1
+  Name: Vishal
+  
+How it works
+------------
+	From the output, we can get information on all the knowledge of technology a particular developer has and also of all the developers who have the knowledge of that particular technology. Execute the following code for their respective options:
+
+	The option from Developer:
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	private Set<Technology> technology;
+	
+	We used the @ManyToMany option; it shows that this particular developer can be associated with multiple technologies.
+
+	The option from Technology:
+	
+	@ManyToMany(mappedBy="technology")
+	private Set<Developer> developer;
+	
+	We used the @ManyToMany option; it shows that this particular technology can be associated with multiple developers. Also, mappedBy="technology" shows that this is a nonowning side.

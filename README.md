@@ -12,3 +12,11 @@ The day directory is itself a project, just select open project in eclipse and s
 - Data access object design pattern in java : https://javarevisited.blogspot.com/2013/01/data-access-object-dao-design-pattern-java-tutorial-example.html
 - Data Access Object Pattern Tutorials Point : https://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm
 - Structure of StackBlitz : https://codecraft.tv/courses/angular/quickstart/overview/
+## Day 28
+#Collections in hibernate
+#Inheritance in hibernate
+#Generate Primary Key
+- https://thoughts-on-java.org/jpa-generate-primary-keys/
+#Mappings in hibernate
+#Criteria and Restrictions
+#Named Parameter
