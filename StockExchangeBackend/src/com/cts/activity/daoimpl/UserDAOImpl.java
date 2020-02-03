@@ -3,6 +3,7 @@ package com.cts.activity.daoimpl;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -88,6 +89,70 @@ public class UserDAOImpl implements UserDAO{
 		} catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return null;
+		}
+	}
+
+	@Override
+	public boolean isValidUser(String username, String password) {
+		try {
+			Session session=sessionFactory.openSession();
+			Transaction tx=session.beginTransaction();
+			Query query=session.createQuery("FROM User WHERE username=:uname AND password=:pwd");
+			query.setString("uname", username);
+			query.setString("pwd", password);
+			
+			User user=(User) query.uniqueResult();
+			tx.commit();
+			session.close();
+			if(user==null)
+				return false;
+			else
+				return true;
+		} catch (HibernateException e) {
+			System.out.println("Exception: "+e.getMessage());
+			return false;
+		}
+	}
+
+	@Override
+	public boolean isAdmin(int id) {
+		try {
+			Session session=sessionFactory.openSession();
+			Transaction tx=session.beginTransaction();
+			Query query=session.createQuery("FROM User WHERE id=:id AND admin=true");
+			query.setString("id", String.valueOf(id));
+			
+			User user=(User) query.uniqueResult();
+			tx.commit();
+			session.close();
+			if(user == null)
+				return false;
+			else
+				return true;
+		} catch (HibernateException e) {
+			System.out.println("Exception: "+e.getMessage());
+			return false;
+		}
+	}
+
+	@Override
+	public boolean isActivated(int id) {
+		try {
+			Session session=sessionFactory.openSession();
+			Transaction tx=session.beginTransaction();
+			Query query=session.createQuery("FROM User WHERE id=:id AND confirmed=true");
+			query.setString("id", String.valueOf(id));
+			
+			User user=(User) query.uniqueResult();
+			tx.commit();
+			session.close();
+			if(user == null)
+				return false;
+			else
+				return true;
+		} catch (HibernateException e) {
+			System.out.println("Exception: "+e.getMessage());
+			return false;
 		}
 	}
 

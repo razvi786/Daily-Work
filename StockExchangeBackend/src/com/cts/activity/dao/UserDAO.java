@@ -16,4 +16,10 @@ public interface UserDAO{
 	
 	public List<User> getAllUsers();
 	
+	public boolean isValidUser(String username,String password);
+	
+	public boolean isAdmin(int id);
+	
+	public boolean isActivated(int id);
+	
 }
