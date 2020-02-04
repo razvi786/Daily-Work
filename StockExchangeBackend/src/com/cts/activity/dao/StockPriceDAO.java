@@ -15,5 +15,7 @@ public interface StockPriceDAO {
 	public StockPrice getStockPriceById(int id);
 	
 	public List<StockPrice> displayAllStockPrices();
+	
+	public boolean importData(String path);
 
 }

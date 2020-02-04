@@ -21,3 +21,11 @@ The day directory is itself a project, just select open project in eclipse and s
 - https://www.tutorialspoint.com/hibernate/hibernate_many_to_one_mapping.htm
 ##### Criteria and Restrictions
 ##### Named Parameter
+
+## Day 29
+##### Inserting CSV file data into MySQL Database directly
+##### Inserting CSV file data into MySQL Database using Java
+##### Servlets introduction
+##### Servlet Life Cycle
+##### RequestDispatcher for Redirecting
+##### Login and Registration Pages using Servlets
