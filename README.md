@@ -29,3 +29,15 @@ The day directory is itself a project, just select open project in eclipse and s
 ##### Servlet Life Cycle
 ##### RequestDispatcher for Redirecting
 ##### Login and Registration Pages using Servlets
+
+## Day 31
+#### Spring
+- History
+- Problems with JEE addressed by Spring
+- Features
+- Architecture
+- Modules
+- Containers [BeanFactory and ApplicationContext]
+- Difference between Tight coupling and Loose coupling
+- Difference between Inversion Of Control and Dependancy Injection
+- 2 Types of Dependancy Injection [Setters and Constructors]
