@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="account1" class="com.cts.training.model.AccountEntity">
+				<property name="id" value="125"/>
+				<property name="accNo" value="10110567"/>
+				<property name="balance" value="12345.678"/>
+				<property name="branch" value="Chennai Perungudi"/>
+				<property name="ifsc" value="ICHD00456"/>
+			</bean>
+			
+	<bean id="customer1" class="com.cts.training.model.CustomerEntity">
+		<property name="id" value="101"/>
+		<property name="name" value="syed"/>
+		<property name="address" value="hyderabad"/>
+		<property name="account" ref="account1"/>
+	</bean>
+	
+		<bean name="account2" class="com.cts.training.model.AccountEntity">
+				<property name="id" value="32"/>
+				<property name="accNo" value="10110749"/>
+				<property name="balance" value="526348.387"/>
+				<property name="branch" value="Mumbai"/>
+				<property name="ifsc" value="ICHD05623"/>
+			</bean>
+	
+	<bean id="customer2" class="com.cts.training.model.CustomerEntity">
+		<property name="id" value="102"/>
+		<property name="name" value="shahrukh"/>
+		<property name="address" value="mumbai"/>
+		<property name="account" ref="account2"/>
+	</bean>
+	
+	<bean id="fund1" class="com.cts.training.model.FundTransferEntity">
+		<property name="id" value="657"/>
+		<property name="fromAcc" value="10110567"/>
+		<property name="toAcc" value="10110749"/>
+		<property name="amount" value="100000"/>
+	</bean>
+
+</beans>

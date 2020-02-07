@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="account" class="com.cts.training.model.AccountEntity"
+		p:id="123" p:accNo="12345" p:balance="23000" p:branch="ANDB" p:ifsc="ANDB0090"
+	/>
+	
+	<bean id="account_constructor" class="com.cts.training.model.AccountEntity"
+		p:id="123" p:accNo="12345" p:balance="23000" p:branch="ANDB" p:ifsc="ANDB0090"
+	/>
+
+	<bean id="customer" class="com.cts.training.model.CustomerEntity"
+		p:id="112" p:name="syed" p:address="yakutpura" p:account-ref="account_constructor"
+	/>	
+
+</beans>

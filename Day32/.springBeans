@@ -8,7 +8,7 @@
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
 		<config>src/beans.xml</config>
-		<config>src/namespace.xml</config>
+		<config>src/collections.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

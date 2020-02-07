@@ -13,6 +13,7 @@ public class UserEntity implements Serializable{
 	private String email;
 	private long phone;
 	private boolean confirmed;
+	private AddressEntity address;
 	
 	public UserEntity() {
 		
@@ -83,6 +84,14 @@ public class UserEntity implements Serializable{
 
 	public void setConfirmed(boolean confirmed) {
 		this.confirmed = confirmed;
+	}
+
+	public AddressEntity getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressEntity address) {
+		this.address = address;
 	}
 
 	@Override
