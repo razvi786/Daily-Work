@@ -247,10 +247,9 @@ function check_validation_flags() {
   }
   if (success) {
     store();
-    location.href = "gift_cards.html";
+    alert("Gift Card Ordered Successfully")
   } else {
     alert("Clear All the errors before submitting")
-    console.log(demo_validation_flags)
   }
 }
 

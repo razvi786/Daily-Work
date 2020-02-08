@@ -1,0 +1,32 @@
+My associate id:
+845027
+
+Other team members:
+845025, 845110, 845111
+
+Team lead:
+845027
+
+My Role in team:
+1. Validate all javascript Input Fields
+2. Store all gift cards
+3. Retrieve all gift cards and display inside table
+4. Adding Bootstrap to all the pages
+
+My development files:
+1. place_order.html
+2. styles.css
+3. scripts.js
+
+I was strong in:
+1. HTML
+2. CSS
+3. BootStrap
+4. DOM Model
+5. JavaScript
+
+I was weak in:
+1. Javascript Validation
+
+Feedback:
+1. Learnt a lot in this challenge, want to get more challenges like this.
