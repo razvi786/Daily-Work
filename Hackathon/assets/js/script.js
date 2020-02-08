@@ -1,49 +1,49 @@
 function store() {
 
-  let id = Math.ceil(Math.random() * 10)
+  let id = Math.ceil(Math.random() * 10000000)
 
   let gift_card = {
 
-    "id": id,
+    "id":id,
 
     "amount": {
-      "rs": document.getElementById("rupees"),
-      "ps": document.getElementById("paise")
+      "rs": document.getElementById("rupees").value,
+      "ps": document.getElementById("paise").value
     },
 
     "recipient_name": {
-      "first": document.getElementById("rec_fname"),
-      "last": document.getElementById("rec_lname")
+      "first": document.getElementById("rec_fname").value,
+      "last": document.getElementById("rec_lname").value
     },
 
     "address": {
-      "street": document.getElementById("street"),
-      "city": document.getElementById("city"),
-      "state": document.getElementById("state"),
-      "country": document.getElementById("country"),
-      "pin": document.getElementById("pincode")
+      "street": document.getElementById("street").value,
+      "city": document.getElementById("city").value,
+      "state": document.getElementById("state").value,
+      "country": document.getElementById("country").value,
+      "pin": document.getElementById("pincode").value
     },
 
     "buyer_name": {
-      "first": document.getElementById("buyer_fname"),
-      "last": document.getElementById("buyer_lname")
+      "first": document.getElementById("buyer_fname").value,
+      "last": document.getElementById("buyer_lname").value
     },
 
     "phone": {
       "code": "+91",
-      "number": document.getElementById("p1") +
-        document.getElementById("p2") +
-        document.getElementById("p3") +
-        document.getElementById("p4") +
-        document.getElementById("p5") +
-        document.getElementById("p6") +
-        document.getElementById("p7") +
-        document.getElementById("p8") +
-        document.getElementById("p9") +
-        document.getElementById("p10")
+      "number": document.getElementById("p1").value +
+        document.getElementById("p2").value +
+        document.getElementById("p3").value +
+        document.getElementById("p4").value +
+        document.getElementById("p5").value +
+        document.getElementById("p6").value +
+        document.getElementById("p7").value +
+        document.getElementById("p8").value +
+        document.getElementById("p9").value +
+        document.getElementById("p10").value
     },
 
-    "email": document.getElementById("email")
+    "email": document.getElementById("email").value
 
   }
 
@@ -211,9 +211,13 @@ function validate_buyer_last_name() {
     localStorage.setItem("demo_validation_flags", JSON.stringify(flags))
   } else {
     div.style.display = 'none';
-    flags[6] = -1;
+    flags[6] = 0;
     localStorage.setItem("demo_validation_flags", JSON.stringify(flags))
   }
+}
+
+function next(ele){
+  ele.nextElementSibling.focus();
 }
 
 function validate_number(element) {
@@ -228,7 +232,7 @@ function validate_number(element) {
 function initialize_demo_validation_flags() {
   var demo_validation_flags = localStorage.getItem("demo_validation_flags");
   if (demo_validation_flags == null) {
-    var new_demo_validation_flags = [0, 0, 0, 0, 0, 0, 0];
+    var new_demo_validation_flags = [-1, -1, -1, -1, -1, -1, -1];
     localStorage.setItem("demo_validation_flags", JSON.stringify(new_demo_validation_flags));
   }
 }
@@ -242,9 +246,11 @@ function check_validation_flags() {
     }
   }
   if (success) {
-    location.href = "view.html";
+    store();
+    location.href = "gift_cards.html";
   } else {
     alert("Clear All the errors before submitting")
+    console.log(demo_validation_flags)
   }
 }
 

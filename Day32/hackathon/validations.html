@@ -9,18 +9,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Document</title>
 </head>
-<body onload="get()">
+<body onload="initialize_demo_validation_flags()">
   <a href="store.html">Store</a>
-  <a href="view.html">View</a><br>
+  <a href="view.html">View</a>
+  <a href="keys.html">Keys</a>
+  <a href="validations.html">Valdiations</a>
+
+  <br>
   
   <form class="needs-validation pl-3" novalidate>
 
-        <div class="form-row">
-            <div class="col-md-4 mb-3" id="fname_v">
-              <label for="fname">First name</label>
-              <input type="text" class="form-control" id="fname" placeholder="First name" value="Mark" onblur="validate()" required>
-              <div id="fname_iv" style="display: none;">Numbers are not allowed</div>
+        <!-- <div class="form-row"> -->
+
+          <div class="" id="amount_v">
+            <label for="rupees">Amount:</label>
+            <input type="number" class="form-control" id="rupees" placeholder="Rupees" required>
+            <input type="number" class="form-control" id="paise" placeholder="Paise" onblur="validate_paise()" required>
+              <div class="text-danger" id="paise_min_iv" style="display: none;">Paise must be more than 0</div>
+              <div class="text-danger" id="paise_max_iv" style="display: none;">Paise cannot be more than 100</div>
             </div>
+              
+
+            <div class="" id="fname_v">
+              <label for="fname">First name</label>
+              <input type="text" class="form-control" id="fname" placeholder="First name" onblur="validate_first_name()" required>
+              <div class="text-danger" id="fname_iv" style="display: none;">Numbers are not allowed</div>
+    
+              <div class="" id="lname_v">
+                <label for="lname">Last name</label>
+                <input type="text" class="form-control" id="lname" placeholder="Last name"  onblur="validate_last_name()" required>
+                <div class="text-danger" id="lname_iv" style="display: none;">Numbers are not allowed</div>
+              </div>
+
+              <input type="number" id="num" onkeypress="validate_number(this)">
 
     <div class="form-group">
       <div class="form-check">
@@ -33,7 +54,7 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-primary btn-sm" type="submit">Submit form</button>
+    <button class="btn btn-primary btn-sm" onclick="check_validation_flags()">Submit form</button>
   </form>
 
 

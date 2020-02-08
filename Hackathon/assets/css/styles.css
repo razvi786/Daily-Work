@@ -1,0 +1,33 @@
+ 
+  body {
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:cover;
+  }
+  
+  .sidebar{
+
+    min-height: 100vh;
+  }
+
+  .main{
+    font-size: 5vw;
+  }
+
+  .logo{
+    height: 10vw;
+  }
+
+  .border-curved:hover{
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 grey;
+  }
+  .my-card:hover{
+    cursor: pointer;
+  }
+  .my-card>img{
+    height: 300px;
+    width: 300px;
+    border-radius: 50px;
+  }
+  
