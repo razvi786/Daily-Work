@@ -8,26 +8,23 @@
   
   .sidebar{
 
-    min-height: 100vh;
+    min-height: 80vh;
   }
 
   .main{
     font-size: 5vw;
   }
 
+  .card-text{
+    font-size: 3vw;
+  }
+
   .logo{
     height: 10vw;
   }
 
-  .border-curved:hover{
-    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 grey;
-  }
   .my-card:hover{
     cursor: pointer;
-  }
-  .my-card>img{
-    height: 300px;
-    width: 300px;
-    border-radius: 50px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 grey;
   }
   
