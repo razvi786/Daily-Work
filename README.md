@@ -41,3 +41,11 @@ The day directory is itself a project, just select open project in eclipse and s
 - Difference between Tight coupling and Loose coupling
 - Difference between Inversion Of Control and Dependancy Injection
 - 2 Types of Dependancy Injection [Setters and Constructors]
+
+## Day 34
+####Maven
+- Maven introduction
+- Create Maven Project
+- Annotations used in Spring
+- JUnit Test cases
+- Maven Life Cycle : https://www.splessons.com/lesson/maven-life-cycle

@@ -1,6 +1,6 @@
 <%@ include file="header.jsp"%>
 
-	<jsp:useBean id="user" class="com.cts.activity.bean.LoginBean" scope="page"></jsp:useBean>
+	<jsp:useBean id="user" class="com.cts.training.bean.LoginBean" scope="page"></jsp:useBean>
 	<%-- <jsp:setProperty property="username" name="user" value="syed007"/>
 	<jsp:setProperty property="password" name="user" value="secret"/> --%>
 
