@@ -1,0 +1,4 @@
+com\cts\training\dao\UserDAO.class
+com\cts\training\daoimpl\UserDAOImpl.class
+com\cts\training\config\HibernateConfiguration.class
+com\cts\training\bean\User.class
