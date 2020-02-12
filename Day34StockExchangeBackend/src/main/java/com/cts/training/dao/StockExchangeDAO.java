@@ -6,9 +6,11 @@ import com.cts.training.bean.StockExchange;
 
 public interface StockExchangeDAO {
 	
-	public boolean saveStockExchange(StockExchange stockExchange);
+//	public boolean saveStockExchange(StockExchange stockExchange);
+//	
+//	public boolean updateStockExchange(StockExchange stockExchange);
 	
-	public boolean updateStockExchange(StockExchange stockExchange);
+	public boolean saveOrUpdateStockExchange(StockExchange stockExchange);
 	
 	public boolean removeStockExchange(StockExchange stockExchange);
 	

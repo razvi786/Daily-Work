@@ -27,11 +27,11 @@ public class StockExchangeUnitTest {
 		stockExchangeDAO=(StockExchangeDAO)context.getBean("stockExchangeDAO");
 	}
 	
-	@Test
-	public void test_add_stockexchange() {
-		StockExchange se=new StockExchange(149, "NSE", "Nagasri Stock Exchange", "India", "Very Bad");
-		assertEquals(true, stockExchangeDAO.saveStockExchange(se));
-	}
+//	@Test
+//	public void test_add_stockexchange() {
+//		StockExchange se=new StockExchange(149, "NSE", "Nagasri Stock Exchange", "India", "Very Bad");
+//		assertEquals(true, stockExchangeDAO.saveStockExchange(se));
+//	}
 	
 	
 

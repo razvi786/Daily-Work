@@ -37,20 +37,20 @@ public class UserUnitTest {
 		assertEquals(5, users.size());
 	}
 	
-	@Test
-	@Ignore
-	public void test_add_user() {
-		User user=new User(147, "nagasri", "hometown", false, "naga@123", 54321, false, 012);
-		assertEquals(true, userDAO.saveUser(user));
-	}
+//	@Test
+//	@Ignore
+//	public void test_add_user() {
+//		User user=new User(147, "nagasri", "hometown", false, "naga@123", 54321, false, 012);
+//		assertEquals(true, userDAO.saveUser(user));
+//	}
 	
-	@Test
-	@Ignore
-	public void test_update_user() {
-		User user=userDAO.getUserById(68);
-		user.setConfirmed(true);
-		assertEquals(true, userDAO.updateUser(user));
-	}
+//	@Test
+//	@Ignore
+//	public void test_update_user() {
+//		User user=userDAO.getUserById(68);
+//		user.setConfirmed(true);
+//		assertEquals(true, userDAO.updateUser(user));
+//	}
 	
 	@Test
 	@Ignore

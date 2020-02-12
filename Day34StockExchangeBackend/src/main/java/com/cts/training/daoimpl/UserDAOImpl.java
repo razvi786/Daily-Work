@@ -21,27 +21,27 @@ public class UserDAOImpl implements UserDAO{
 	@Autowired
 	SessionFactory sessionFactory;
 
-	@Override
-	public boolean saveUser(User user) {
-		try {
-			sessionFactory.getCurrentSession().save(user);
-			return true;
-		} catch (HibernateException e) {
-			System.out.println("Exception: "+e.getMessage());
-			return false;
-		}
-	}
+//	@Override
+//	public boolean saveUser(User user) {
+//		try {
+//			sessionFactory.getCurrentSession().save(user);
+//			return true;
+//		} catch (HibernateException e) {
+//			System.out.println("Exception: "+e.getMessage());
+//			return false;
+//		}
+//	}
 
-	@Override
-	public boolean updateUser(User user) {
-		try {
-			sessionFactory.getCurrentSession().update(user);
-			return true;
-		} catch (HibernateException e) {
-			System.out.println("Exception: "+e.getMessage());
-			return false;
-		}
-	}
+//	@Override
+//	public boolean updateUser(User user) {
+//		try {
+//			sessionFactory.getCurrentSession().update(user);
+//			return true;
+//		} catch (HibernateException e) {
+//			System.out.println("Exception: "+e.getMessage());
+//			return false;
+//		}
+//	}
 
 	@Override
 	public boolean removeUser(User user) {
@@ -119,6 +119,17 @@ public class UserDAOImpl implements UserDAO{
 				return false;
 			else
 				return true;
+		} catch (HibernateException e) {
+			System.out.println("Exception: "+e.getMessage());
+			return false;
+		}
+	}
+
+	@Override
+	public boolean saveOrUpdateUser(User user) {
+		try {
+			sessionFactory.getCurrentSession().saveOrUpdate(user);
+			return true;
 		} catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return false;

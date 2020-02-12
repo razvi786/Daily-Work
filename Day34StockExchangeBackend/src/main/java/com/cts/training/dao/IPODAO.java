@@ -6,9 +6,11 @@ import com.cts.training.bean.IPO;
 
 public interface IPODAO {
 	
-	public boolean saveIPO(IPO ipo);
+//	public boolean saveIPO(IPO ipo);
+//	
+//	public boolean updateIPO(IPO ipo);
 	
-	public boolean updateIPO(IPO ipo);
+	public boolean saveOrUpdateIPO(IPO ipo);
 	
 	public boolean deleteIPO(IPO ipo);
 	
