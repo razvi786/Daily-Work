@@ -3,6 +3,7 @@ package com.cts.training.bean;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,14 +16,15 @@ public class User implements Serializable{
 
 	private static final long serialVersionUID = 3408677273608298734L;
 	@Id
+	@GeneratedValue
 	private int id;
 	private String username;
 	private String password;
-	private boolean admin;
+	private boolean admin=false;
 	private String email;
 	private long phone;
-	private boolean confirmed;
-	private long code;
+	private boolean confirmed=false;
+	private long code=0;
 	
 	public User() {
 		

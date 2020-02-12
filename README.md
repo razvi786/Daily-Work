@@ -51,9 +51,18 @@ The day directory is itself a project, just select open project in eclipse and s
 - Maven Life Cycle : https://www.splessons.com/lesson/maven-life-cycle
 
 ## Day 35
-####Spring MVC
+#### Spring MVC
 - Introduction to MVC Pattern
 - Spring MVC Architecture
-- CRUD Operations using Spring MVC
+- Read Operation using Spring MVC
 - Building a Web Application using Spring MVC
+
+## Day 36
+#### Spring MVC
+- Spring Forms
+- Create Operation using Spring
+- Delete Operation using Spring
+- Update Operation using Spring
+- Integrating all CRUD Operations into Spring Project
+
 

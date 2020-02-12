@@ -3,6 +3,7 @@ package com.cts.training.bean;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,6 +16,7 @@ public class StockExchange implements Serializable{
 
 	private static final long serialVersionUID = 7636199702245731098L;
 	@Id
+	@GeneratedValue
 	private int id;
 	private String name;
 	private String brief;

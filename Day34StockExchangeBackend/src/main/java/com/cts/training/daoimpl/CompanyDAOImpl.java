@@ -20,27 +20,27 @@ public class CompanyDAOImpl implements CompanyDAO{
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	@Override
-	public boolean saveCompany(Company company) {
-		try {
-			sessionFactory.getCurrentSession().save(company);
-			return true;
-		}catch (HibernateException e) {
-			System.out.println("Exception: "+e.getMessage());
-			return false;
-		}
-	}
-
-	@Override
-	public boolean updateCompany(Company company) {
-		try {
-			sessionFactory.getCurrentSession().update(company);
-			return true;
-		}catch (HibernateException e) {
-			System.out.println("Exception: "+e.getMessage());
-			return false;
-		}
-	}
+//	@Override
+//	public boolean saveCompany(Company company) {
+//		try {
+//			sessionFactory.getCurrentSession().save(company);
+//			return true;
+//		}catch (HibernateException e) {
+//			System.out.println("Exception: "+e.getMessage());
+//			return false;
+//		}
+//	}
+//
+//	@Override
+//	public boolean updateCompany(Company company) {
+//		try {
+//			sessionFactory.getCurrentSession().update(company);
+//			return true;
+//		}catch (HibernateException e) {
+//			System.out.println("Exception: "+e.getMessage());
+//			return false;
+//		}
+//	}
 
 	@Override
 	public boolean removeCompany(Company company) {
@@ -72,6 +72,17 @@ public class CompanyDAOImpl implements CompanyDAO{
 		}catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return null;
+		}
+	}
+
+	@Override
+	public boolean saveOrUpdateCompany(Company company) {
+		try {
+			sessionFactory.getCurrentSession().saveOrUpdate(company);
+			return true;
+		}catch(HibernateException e) {
+			System.out.println("Exception: "+e.getMessage());
+			return false;
 		}
 	}
 

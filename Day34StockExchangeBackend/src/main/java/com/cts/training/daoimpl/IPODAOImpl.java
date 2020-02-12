@@ -7,53 +7,45 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cts.training.bean.IPO;
 import com.cts.training.dao.IPODAO;
 
+@Transactional
+@Repository(value = "ipoDAO")
 public class IPODAOImpl implements IPODAO{
 
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	@Override
-	public boolean saveIPO(IPO ipo) {
-		try {
-			Session session=sessionFactory.openSession();
-			Transaction tx=session.beginTransaction();
-			session.save(ipo);
-			tx.commit();
-			session.close();
-			return true;
-		} catch (HibernateException e) {
-			System.out.println("Exception: "+e.getMessage());
-			return false;
-		}
-	}
-
-	@Override
-	public boolean updateIPO(IPO ipo) {
-		try {
-			Session session=sessionFactory.openSession();
-			Transaction tx=session.beginTransaction();
-			session.update(ipo);
-			tx.commit();
-			session.close();
-			return true;
-		} catch (HibernateException e) {
-			System.out.println("Exception: "+e.getMessage());
-			return false;
-		}
-	}
+//	@Override
+//	public boolean saveIPO(IPO ipo) {
+//		try {
+//			sessionFactory.getCurrentSession().save(ipo);
+//			return true;
+//		} catch (HibernateException e) {
+//			System.out.println("Exception: "+e.getMessage());
+//			return false;
+//		}
+//	}
+//
+//	@Override
+//	public boolean updateIPO(IPO ipo) {
+//		try {
+//			sessionFactory.getCurrentSession().update(ipo);
+//			return true;
+//		} catch (HibernateException e) {
+//			System.out.println("Exception: "+e.getMessage());
+//			return false;
+//		}
+//	}
 
 	@Override
 	public boolean deleteIPO(IPO ipo) {
 		try {
-			Session session=sessionFactory.openSession();
-			Transaction tx=session.beginTransaction();
-			session.delete(ipo);
-			tx.commit();
-			session.close();
+			sessionFactory.getCurrentSession().delete(ipo);
 			return true;
 		} catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
@@ -64,12 +56,7 @@ public class IPODAOImpl implements IPODAO{
 	@Override
 	public IPO getIPOById(int id) {
 		try {
-			Session session=sessionFactory.openSession();
-			Transaction tx=session.beginTransaction();
-			IPO ipo=session.get(IPO.class, id);
-			tx.commit();
-			session.close();
-			return ipo;
+			return sessionFactory.getCurrentSession().get(IPO.class, id);
 		} catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return null;
@@ -80,15 +67,22 @@ public class IPODAOImpl implements IPODAO{
 	@Override
 	public List<IPO> displayAllIPOs() {
 		try {
-			Session session=sessionFactory.openSession();
-			Transaction tx=session.beginTransaction();
-			List<IPO> ipos=session.createQuery("FROM IPO").list();
-			tx.commit();
-			session.close();
+			List<IPO> ipos=sessionFactory.getCurrentSession().createQuery("FROM IPO").list();
 			return ipos;
 		} catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return null;
+		}
+	}
+
+	@Override
+	public boolean saveOrUpdateIPO(IPO ipo) {
+		try {
+			sessionFactory.getCurrentSession().saveOrUpdate(ipo);
+			return true;
+		} catch (Exception e) {
+			System.out.println("Exception: "+e.getMessage());
+			return false;
 		}
 	}
 	

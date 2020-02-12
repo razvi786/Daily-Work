@@ -6,9 +6,11 @@ import com.cts.training.bean.User;
 
 public interface UserDAO{
 	
-	public boolean saveUser(User user);
+//	public boolean saveUser(User user);
+//	
+//	public boolean updateUser(User user);
 	
-	public boolean updateUser(User user);
+	public boolean saveOrUpdateUser(User user);
 	
 	public boolean removeUser(User user);
 	

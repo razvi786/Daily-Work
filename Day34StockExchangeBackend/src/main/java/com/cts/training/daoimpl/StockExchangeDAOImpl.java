@@ -18,27 +18,27 @@ public class StockExchangeDAOImpl implements StockExchangeDAO{
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	@Override
-	public boolean saveStockExchange(StockExchange stockExchange) {
-		try {
-			sessionFactory.getCurrentSession().save(stockExchange);
-			return true;
-		} catch (HibernateException e) {
-			System.out.println("Exception: "+e.getMessage());
-			return false;
-		}
-	}
-
-	@Override
-	public boolean updateStockExchange(StockExchange stockExchange) {
-		try {
-			sessionFactory.getCurrentSession().update(stockExchange);
-			return true;
-		} catch (HibernateException e) {
-			System.out.println("Exception: "+e.getMessage());
-			return false;
-		}
-	}
+//	@Override
+//	public boolean saveStockExchange(StockExchange stockExchange) {
+//		try {
+//			sessionFactory.getCurrentSession().save(stockExchange);
+//			return true;
+//		} catch (HibernateException e) {
+//			System.out.println("Exception: "+e.getMessage());
+//			return false;
+//		}
+//	}
+//
+//	@Override
+//	public boolean updateStockExchange(StockExchange stockExchange) {
+//		try {
+//			sessionFactory.getCurrentSession().update(stockExchange);
+//			return true;
+//		} catch (HibernateException e) {
+//			System.out.println("Exception: "+e.getMessage());
+//			return false;
+//		}
+//	}
 
 	@Override
 	public boolean removeStockExchange(StockExchange stockExchange) {
@@ -70,6 +70,17 @@ public class StockExchangeDAOImpl implements StockExchangeDAO{
 		} catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());
 			return null;
+		}
+	}
+
+	@Override
+	public boolean saveOrUpdateStockExchange(StockExchange stockExchange) {
+		try {
+			sessionFactory.getCurrentSession().saveOrUpdate(stockExchange);
+			return true;
+		}catch(Exception e) {
+			System.out.println("Exception: "+e.getMessage());
+			return false;
 		}
 	}
 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,6 +17,7 @@ public class IPO implements Serializable{
 
 	private static final long serialVersionUID = 2575561862105094930L;
 	@Id
+	@GeneratedValue
 	private int id;
 	private String company_name;
 	private String stock_exchange;

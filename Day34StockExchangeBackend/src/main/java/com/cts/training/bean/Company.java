@@ -7,6 +7,7 @@ import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,6 +20,7 @@ public class Company implements Serializable{
 
 	private static final long serialVersionUID = -3774796956003475482L;
 	@Id
+	@GeneratedValue
 	private int id;
 	private String name;
 	private double turnover;
@@ -35,7 +37,7 @@ public class Company implements Serializable{
 	private String sector;
 	private String brief;
 	private String stock_code;
-	private boolean activated;
+	private boolean activated=true;
 	
 	public Company() {
 		
