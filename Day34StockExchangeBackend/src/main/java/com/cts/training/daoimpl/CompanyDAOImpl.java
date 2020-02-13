@@ -2,6 +2,7 @@ package com.cts.training.daoimpl;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -68,6 +69,7 @@ public class CompanyDAOImpl implements CompanyDAO{
 	public List<Company> getAllCompanies() {
 		try {
 			List<Company> companies=sessionFactory.getCurrentSession().createQuery("FROM Company").list();
+//			Hibernate.initialize(Company company:companies);
 			return companies;
 		}catch (HibernateException e) {
 			System.out.println("Exception: "+e.getMessage());

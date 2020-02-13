@@ -1,1 +1,3 @@
 com\cts\training\test\UserUnitTest.class
+com\cts\training\test\IpoUnitTest.class
+com\cts\training\test\StockExchangeUnitTest.class
