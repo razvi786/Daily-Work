@@ -13,5 +13,6 @@
 		<li class="nav-item"><a class="nav-link" href="company-home">Manage Companies</a></li>
 		<li class="nav-item"><a class="nav-link" href="stock-exchange-home">Manage Stock Exchanges</a></li>
 		<li class="nav-item"><a class="nav-link" href="ipo-home">Manage IPOs</a></li>
+		<li class="nax-item"><a class="nav-link" href="sector-home">Manage Sectors</a></li>
 	</ul>	
 </nav>

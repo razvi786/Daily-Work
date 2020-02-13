@@ -39,5 +39,12 @@ public class IPOController {
 		model.addAttribute("ipo",ipo);
 		return "ipos";
 	}
+	
+	@GetMapping("/ipo/remove/{id}")
+	public String removeIPO(@PathVariable("id") int id, Model model) {
+		IPO ipo=ipoDAO.getIPOById(id);
+		ipoDAO.deleteIPO(ipo);
+		return "redirect:/ipo-home";
+	}
 
 }

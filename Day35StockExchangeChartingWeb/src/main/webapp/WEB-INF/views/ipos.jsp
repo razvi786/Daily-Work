@@ -31,10 +31,6 @@
 				<form:label path="total_shares">Total Shares:</form:label>
 				<form:input type="number" class="form-control" path="total_shares" />
 
-				<form:label path="open_date_time">Open Date and  Time:</form:label>
-				<form:input type="datetime-local" class="form-control"
-					path="open_date_time" />
-
 				<form:label path="remarks">Remarks:</form:label>
 				<form:input class="form-control" path="remarks" />
 

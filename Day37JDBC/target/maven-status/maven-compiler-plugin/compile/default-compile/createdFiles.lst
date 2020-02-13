@@ -1,0 +1,6 @@
+com\cts\training\daoimpl\MovieDAOImpl$1.class
+com\cts\training\config\HibernateConfiguration.class
+com\cts\training\dao\MovieDAO.class
+com\cts\training\controller\MovieController.class
+com\cts\training\daoimpl\MovieDAOImpl.class
+com\cts\training\bean\Movie.class

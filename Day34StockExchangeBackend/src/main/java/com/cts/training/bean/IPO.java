@@ -9,15 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.format.datetime.joda.LocalDateTimeParser;
 import org.springframework.stereotype.Component;
-
-import javafx.util.converter.LocalDateTimeStringConverter;
 
 @Entity
 @Table
 @Component
-public class IPO implements Serializable{
+public class IPO implements Serializable {
 
 	private static final long serialVersionUID = 2575561862105094930L;
 	@Id
@@ -27,11 +24,11 @@ public class IPO implements Serializable{
 	private String stock_exchange;
 	private double price_per_share;
 	private int total_shares;
-	private LocalDateTime open_date_time;
+	private LocalDateTime open_date_time = LocalDateTime.now();
 	private String remarks;
-	
+
 	public IPO() {
-		
+
 	}
 
 	public IPO(int id, String company_name, String stock_exchange, double price_per_share, int total_shares,
@@ -86,25 +83,20 @@ public class IPO implements Serializable{
 		this.total_shares = total_shares;
 	}
 
-	public String getOpen_date_time() {//2014-11-16T15:25:33
-//		DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-mm-dd'T'hh:mm:ss");
-//		return open_date_time.format(formatter).toString();
-		String date=open_date_time.getYear()+"-"+open_date_time.getMonthValue()+"-"+open_date_time.getDayOfMonth()+"T"+
-open_date_time.getHour()+":"+open_date_time.getMinute()+":"+open_date_time.getSecond(); 
-		return date;
-	}
-
-	public void setOpen_date_time(String open_date_time) {
-		DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd'T'H:m");
-		this.open_date_time = LocalDateTime.parse(open_date_time, formatter);
-	}
-
 	public String getRemarks() {
 		return remarks;
 	}
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+
+	public LocalDateTime getOpen_date_time() {
+		return open_date_time;
+	}
+
+	public void setOpen_date_time(LocalDateTime open_date_time) {
+		this.open_date_time = open_date_time;
 	}
 
 	@Override
