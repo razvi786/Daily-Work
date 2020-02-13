@@ -2,13 +2,17 @@ package com.cts.training.bean;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.datetime.joda.LocalDateTimeParser;
 import org.springframework.stereotype.Component;
+
+import javafx.util.converter.LocalDateTimeStringConverter;
 
 @Entity
 @Table
@@ -82,12 +86,17 @@ public class IPO implements Serializable{
 		this.total_shares = total_shares;
 	}
 
-	public LocalDateTime getOpen_date_time() {
-		return open_date_time;
+	public String getOpen_date_time() {//2014-11-16T15:25:33
+//		DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-mm-dd'T'hh:mm:ss");
+//		return open_date_time.format(formatter).toString();
+		String date=open_date_time.getYear()+"-"+open_date_time.getMonthValue()+"-"+open_date_time.getDayOfMonth()+"T"+
+open_date_time.getHour()+":"+open_date_time.getMinute()+":"+open_date_time.getSecond(); 
+		return date;
 	}
 
-	public void setOpen_date_time(LocalDateTime open_date_time) {
-		this.open_date_time = open_date_time;
+	public void setOpen_date_time(String open_date_time) {
+		DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd'T'H:m");
+		this.open_date_time = LocalDateTime.parse(open_date_time, formatter);
 	}
 
 	public String getRemarks() {
