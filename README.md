@@ -74,3 +74,9 @@ The day directory is itself a project, just select open project in eclipse and s
 - CRUD Operations using Spring JDBC Template
 - Angular Interview Questions: https://github.com/sudheerj/angular-interview-questions
 
+## Day38
+#### Spring Security and Filter
+- Basic Authentication
+- Form based Authentication
+- Filtering using Filter interface
+- In Memory Spring Security
