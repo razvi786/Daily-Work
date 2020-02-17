@@ -80,3 +80,17 @@ The day directory is itself a project, just select open project in eclipse and s
 - Form based Authentication
 - Filtering using Filter interface
 - In Memory Spring Security
+
+## Day39
+#### Internal Hackathon
+- Created a Spring Application for E-Commerce Website
+- Implemented Security on that Application
+
+## Day40
+#### Spring DB Security and SQL Queries
+- DB Authentication Security
+- SQL Clauses and Aggregate Functions
+- SQL Joins
+- SQL Sub Queries
+- Co related Sub Queries
+

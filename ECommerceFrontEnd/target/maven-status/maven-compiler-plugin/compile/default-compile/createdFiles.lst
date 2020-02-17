@@ -1,0 +1,10 @@
+com\cts\training\controller\ProductController.class
+com\cts\training\config\ViewResolverConfiguration.class
+com\cts\training\controller\CategoryController.class
+com\cts\training\controller\SupplierController.class
+com\cts\training\config\SecurityWebApplicationInitializer.class
+com\cts\training\controller\UserController.class
+com\cts\training\config\SecurityConfiguration.class
+com\cts\training\controller\HomeController.class
+com\cts\training\controller\AdminController.class
+com\cts\training\config\WebAppInitializer.class
