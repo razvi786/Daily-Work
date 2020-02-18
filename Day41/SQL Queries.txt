@@ -1,0 +1,147 @@
+create table emp(
+id integer primary key,
+name varchar(255),
+dept_id integer,
+salary integer(20),
+foreign key (dept_id) references dept(id)
+);
+
+create table dept(
+id integer primary key,
+name varchar(255)
+);
+
+insert into dept values (101,"Developer");
+insert into dept values (102,"Test Engineer");
+insert into dept values (103,"Manager");
+
+insert into emp values (101,"Shreya",101,25000);
+insert into emp values (102,"anil",101,23000);
+insert into emp values (103,"Harith",101,18000);
+insert into emp values (104,"Somu",102,24500);
+insert into emp values (105,"Shaam",102,22000);
+insert into emp values (106,"Sunny",102,17034);
+insert into emp values (107,"Suresh",102,15000);
+insert into emp values (108,"Rahul",103,40000);
+insert into emp values (109,"Sohail",103,45000);
+insert into emp values (110,"KCR Anna",103,150000);
+
+
+
+select * from emp
+where dept_id=
+(select id from dept
+where name="Developer");
+
+
+create table customers(
+id integer primary key,
+name varchar(255)
+);
+
+create table orders(
+id integer primary key,
+cust_id integer);
+
+create table order_detail(
+id integer primary key,
+order_id integer,
+price integer);
+
+select * from customers where id=(
+select cust_id from orders where id=(
+ select order_id from order_detail where price=(
+	select max(price) from order_detail
+ )
+ )
+ );
+
+select * from customers c,orders o,order_detail od where c.id=o.cust_id and o.id=od.order_id and price=(
+select max(price) from order_detail);
+
+delimiter $$;
+create procedure p1(in a integer)
+begin
+if a%2=0 then
+select 'eve no';
+else
+select 'odd no';
+end if;
+end $$
+delimiter;
+
+set @n=21;
+call p1(@n);
+
+delimiter $$
+create procedure count_emp_name(in dno int)
+begin
+declare ecount int;
+declare ename varchar(255);
+select count(*),name into ecount,ename from emp where dept_id=dno;
+select ecount,ename;
+end $$
+delimiter ;
+
+delimiter $$
+create procedure pdept(in dname varchar(20), out ecount integer)
+begin
+select count(*) into ecount from emp where dept_id=(
+select id from dept where name=dname);
+end $$
+delimiter ;
+
+delimiter $$
+create procedure pinout(inout)
+
+delimiter $$
+create function f1(eid int) returns varchar(20)
+begin
+declare nm varchar(20);
+select name into nm from emp where id=eid;
+return nm;
+end $$
+
+set@name=f1(2);
+
+delimiter $$
+create function f2(eid int) returns varchar(20)
+begin
+declare dname varchar(20);
+select name into dname from dept where id=(
+select dept_id from emp where id=eid);
+return dname;
+end $$
+delimiter ;
+
+set @dname=f2(101);
+select @dname;
+
+create view customers_orders as
+select c.id,c.name,od.price from customers c,orders o,order_detail od where c.id=o.cust_id and o.id=od.order_id;
+
+delimiter $$
+create procedure ed_name(in eid int,out ename varchar(20),out dname varchar(20))
+begin
+select name into ename from emp where id=eid;
+select name into dname from dept where id=(
+select dept_id from emp where id=eid);
+end $$
+delimiter ;
+
+call ed_name(110,@ename,@dname);
+
+select @ename,@dname;
+
+create table del_emp as select * from emp where false;
+
+delimiter $$
+create trigger del_trigger
+after delete
+on emp
+for each row
+begin
+insert into del_emp values (old.id,old.name,old.dept_id,old.salary);
+end $$
+delimiter ;
+

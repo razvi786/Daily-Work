@@ -3,7 +3,6 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.cts.training</groupId>
   <artifactId>Day40SpringSecurityDBAuth</artifactId>
-  <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>Day40SpringSecurityDBAuth Maven Webapp</name>
   <url>http://maven.apache.org</url>

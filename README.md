@@ -94,3 +94,11 @@ The day directory is itself a project, just select open project in eclipse and s
 - SQL Sub Queries
 - Co related Sub Queries
 
+## Day 41
+#### PL/SQL and Web Services
+- Procedures
+- Functions
+- Views
+- Triggers
+- Web Service Intoduction
+

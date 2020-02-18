@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +15,8 @@
 			out.println("<span class=\"errorblock\">Incorrect Login name or Password.</span>");
 		}
 	%>
-
-	<form name="loginForm" action="<c:url value='login' />" method="POST">
+	<c:url var="loginUrl" value="/login" />
+	<form name="loginForm" action="${loginUrl }" method="POST">
 		<table>
 			<tr>
 				<td>Username:</td>

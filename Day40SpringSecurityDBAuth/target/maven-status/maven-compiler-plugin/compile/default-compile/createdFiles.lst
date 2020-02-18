@@ -1,0 +1,3 @@
+com\cts\training\controller\LoginController.class
+com\cts\training\config\ViewResolverConfiguration.class
+com\cts\training\config\WebAppInitializer.class
