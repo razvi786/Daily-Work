@@ -102,3 +102,9 @@ The day directory is itself a project, just select open project in eclipse and s
 - Triggers
 - Web Service Intoduction
 
+## Day 42
+#### Web Services and Spring Boot
+- Web Services using JSON
+- Web Services using Database
+- Spring Boot Project
+
