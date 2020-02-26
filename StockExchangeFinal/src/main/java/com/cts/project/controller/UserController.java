@@ -22,38 +22,38 @@ import com.cts.project.repo.UserRepo;
 public class UserController {
 	
 	@Autowired
-	UserRepo ur;
+	UserRepo userRepo;
 	
-	@Autowired
-	JavaMailSender jms;
+//	@Autowired
+//	JavaMailSender jms;
 	
 	@GetMapping("/user")
-	public List<User> findAll(){
-		return ur.findAll();
+	public List<User> getAllUsers(){
+		return userRepo.findAll();
 	}
 	
 	@GetMapping("/user/{id}")
-	public User findOne(@PathVariable int id) {
-		Optional<User> user=ur.findById(id);
+	public User getUserById(@PathVariable int id) {
+		Optional<User> user=userRepo.findById(id);
 		User u=user.get();
 		return u;
 	}
 	
 	@PostMapping("/user")
-	public User save(@RequestBody User user) {
-		User u=ur.save(user);
+	public User saveUser(@RequestBody User user) {
+		User u=userRepo.save(user);
 		//Sending Mail Code
 		return u;
 	}
 	
 	@DeleteMapping("/user/{id}")
-	public void delete(@PathVariable int id) {
-		ur.deleteById(id);
+	public void deleteUser(@PathVariable int id) {
+		userRepo.deleteById(id);
 	}
 	
 	@PutMapping("/user")
-	public User update(@RequestBody User user) {
-		User u=ur.save(user);
+	public User updateUser(@RequestBody User user) {
+		User u=userRepo.save(user);
 		return u;
 	}
 
