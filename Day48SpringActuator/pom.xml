@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>StockExchangeFinal</artifactId>
+	<artifactId>Day48SpringActuator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>StockExchangeFinal</name>
+	<name>Day48SpringActuator</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -19,9 +19,8 @@
 	</properties>
 
 	<dependencies>
-	
 	<dependency>
-			<groupId>org.springframework.boot</groupId>
+	<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<dependency>
@@ -38,7 +37,6 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-data-rest</artifactId>
 	</dependency>
-	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>

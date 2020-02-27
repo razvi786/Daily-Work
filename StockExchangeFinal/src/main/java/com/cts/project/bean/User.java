@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -24,14 +25,23 @@ public class User implements Serializable{
 	private String email;
 	private long phone;
 	private boolean confirmed=false;
-	private long code=0;
+	private long code;
+	private String dp;
 	
 	public User() {
 		
 	}
 
+	public String getDp() {
+		return dp;
+	}
+
+	public void setDp(String dp) {
+		this.dp = dp;
+	}
+
 	public User(int id, String username, String password, boolean admin, String email, long phone, boolean confirmed,
-			long code) {
+			long code,String dp) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -41,6 +51,7 @@ public class User implements Serializable{
 		this.phone = phone;
 		this.confirmed = confirmed;
 		this.code = code;
+		this.dp=dp;
 	}
 
 	public int getId() {

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,8 +25,8 @@ public class UserController {
 	@Autowired
 	UserRepo userRepo;
 	
-//	@Autowired
-//	JavaMailSender jms;
+	@Autowired
+	JavaMailSender jms;
 	
 	@GetMapping("/user")
 	public List<User> getAllUsers(){
@@ -42,7 +43,21 @@ public class UserController {
 	@PostMapping("/user")
 	public User saveUser(@RequestBody User user) {
 		User u=userRepo.save(user);
-		//Sending Mail Code
+		try {
+			SimpleMailMessage sm = new SimpleMailMessage();
+			sm.setFrom("babymol.bobby@gmail.com");
+			sm.setTo(u.getEmail());
+			sm.setSubject("Activate User Account");
+			sm.setText("Hi "+u.getUsername()+",\n"
+					+ "Your Account has been created successfully.\n"
+					+ "Click on the Link below to activate your account:\n"
+					+ "http://localhost:4200/user/activate?code="+u.getCode());
+			jms.send(sm);
+			System.out.println("sending mail...");
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
 		return u;
 	}
 	
@@ -54,6 +69,12 @@ public class UserController {
 	@PutMapping("/user")
 	public User updateUser(@RequestBody User user) {
 		User u=userRepo.save(user);
+		return u;
+	}
+	
+	@GetMapping("/user/activate/{code}")
+	public User getUserByCode(@PathVariable long code) {
+		User u=userRepo.findByCode(code);
 		return u;
 	}
 
