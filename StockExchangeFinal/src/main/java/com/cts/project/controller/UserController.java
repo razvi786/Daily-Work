@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.project.bean.User;
+import com.cts.project.dto.UserDTO;
 import com.cts.project.repo.UserRepo;
+import com.cts.project.service.UserService;
 
 @CrossOrigin(origins="*")
 @RestController
@@ -26,50 +28,37 @@ public class UserController {
 	UserRepo userRepo;
 	
 	@Autowired
-	JavaMailSender jms;
+	UserService userService;
 	
 	@GetMapping("/user")
-	public List<User> getAllUsers(){
-		return userRepo.findAll();
+	public ResponseEntity<List<UserDTO>> getAllUsers(){
+		List<UserDTO> userDTOs=userService.getAll();
+		return new ResponseEntity<List<UserDTO>>(userDTOs,HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/user/{id}")
-	public User getUserById(@PathVariable int id) {
-		Optional<User> user=userRepo.findById(id);
-		User u=user.get();
-		return u;
+	public ResponseEntity<UserDTO getUserById(@PathVariable int id) {
+		UserDTO userDTO=userService.getById(id);
+		return new ResponseEntity<UserDTO>(userDTO,HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/user")
-	public User saveUser(@RequestBody User user) {
-		User u=userRepo.save(user);
-		try {
-			SimpleMailMessage sm = new SimpleMailMessage();
-			sm.setFrom("babymol.bobby@gmail.com");
-			sm.setTo(u.getEmail());
-			sm.setSubject("Activate User Account");
-			sm.setText("Hi "+u.getUsername()+",\n"
-					+ "Your Account has been created successfully.\n"
-					+ "Click on the Link below to activate your account:\n"
-					+ "http://localhost:4200/user/activate?code="+u.getCode());
-			jms.send(sm);
-			System.out.println("sending mail...");
-		}
-		catch (Exception e){
-			e.printStackTrace();
-		}
-		return u;
+	public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO) {
+//		User u=userRepo.save(user);
+		userService.insert(userDTO);
+		return new ResponseEntity<UserDTO>(userDTO,HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/user/{id}")
 	public void deleteUser(@PathVariable int id) {
-		userRepo.deleteById(id);
+		userService.remove(id);
 	}
 	
 	@PutMapping("/user")
-	public User updateUser(@RequestBody User user) {
-		User u=userRepo.save(user);
-		return u;
+	public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO) {
+//		User u=userRepo.save(user);
+		userService.update(userDTO);
+		return new ResponseEntity<UserDTO>(userDTO,HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/user/activate/{code}")
