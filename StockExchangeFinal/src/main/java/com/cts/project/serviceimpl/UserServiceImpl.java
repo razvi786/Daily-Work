@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public UserDTO getById(int id) {
 		Optional<User> u=userRepo.findById(id);
-		User userEntity=u.get();
+		User userEntity=u.orElse(new User());
 		UserDTO userDTO=new UserDTO();
 		BeanUtils.copyProperties(userEntity,userDTO);
 		return userDTO;
@@ -73,7 +73,11 @@ public class UserServiceImpl implements UserService{
 	public List<UserDTO> getAll() {
 		List<User> userEntities=userRepo.findAll();
 		List<UserDTO> userDTOs=new ArrayList<UserDTO>();
-		BeanUtils.copyProperties(userEntities,userDTOs);
+		for(User userEntity:userEntities) {
+			UserDTO userDTO=new UserDTO();
+			BeanUtils.copyProperties(userEntity,userDTO);
+			userDTOs.add(userDTO);
+		}
 		return userDTOs;
 	}
 

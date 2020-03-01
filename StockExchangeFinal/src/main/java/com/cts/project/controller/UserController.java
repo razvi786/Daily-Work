@@ -37,7 +37,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/user/{id}")
-	public ResponseEntity<UserDTO getUserById(@PathVariable int id) {
+	public ResponseEntity<UserDTO> getUserById(@PathVariable int id) {
 		UserDTO userDTO=userService.getById(id);
 		return new ResponseEntity<UserDTO>(userDTO,HttpStatus.CREATED);
 	}
