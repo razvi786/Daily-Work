@@ -16,4 +16,6 @@ public interface UserService {
 	
 	public List<UserDTO> getAll();
 	
+	public UserDTO getUserByCode(long code);
+	
 }

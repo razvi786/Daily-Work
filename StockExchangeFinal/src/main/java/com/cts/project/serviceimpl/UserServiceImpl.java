@@ -81,4 +81,12 @@ public class UserServiceImpl implements UserService{
 		return userDTOs;
 	}
 
+	@Override
+	public UserDTO getUserByCode(long code) {
+		User userEntity=userRepo.findByCode(code);
+		UserDTO userDTO=new UserDTO();
+		BeanUtils.copyProperties(userEntity, userDTO);
+		return userDTO;
+	}
+
 }

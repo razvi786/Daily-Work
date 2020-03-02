@@ -1,7 +1,6 @@
-package com.cts.project.controller;
+package com.cts.training.userservice;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,11 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cts.project.bean.User;
-import com.cts.project.dto.UserDTO;
-import com.cts.project.repo.UserRepo;
-import com.cts.project.service.UserService;
-
 @CrossOrigin(origins="*")
 @RestController
 public class UserController {
@@ -29,9 +23,9 @@ public class UserController {
 	
 	@GetMapping("/user")
 	public ResponseEntity<?> getAllUsers(){
-		List<UserDTO> userDTOs=userService.getAll();
-		if(userDTOs.size()>0) {
-			return new ResponseEntity<List<UserDTO>>(userDTOs,HttpStatus.OK);
+		List<User> users=userService.getAll();
+		if(users.size()>0) {
+			return new ResponseEntity<List<User>>(users,HttpStatus.OK);
 		}else {
 			return new ResponseEntity<String>("No User Found",HttpStatus.NOT_FOUND);
 		}
@@ -39,19 +33,19 @@ public class UserController {
 	
 	@GetMapping("/user/{id}")
 	public ResponseEntity<?> getUserById(@PathVariable int id) {
-		UserDTO userDTO=userService.getById(id);
-		if(userDTO!=null) {
-			return new ResponseEntity<UserDTO>(userDTO,HttpStatus.OK);
+		User user=userService.getById(id);
+		if(user!=null) {
+			return new ResponseEntity<User>(user,HttpStatus.OK);
 		}else{
 			return new ResponseEntity<String>("User Not Found",HttpStatus.NOT_FOUND);
 		}
 	}
 	
 	@PostMapping("/user")
-	public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO) {
+	public ResponseEntity<User> saveUser(@RequestBody User user) {
 //		User u=userRepo.save(user);
-		userService.insert(userDTO);
-		return new ResponseEntity<UserDTO>(userDTO,HttpStatus.OK);
+		userService.insert(user);
+		return new ResponseEntity<User>(user,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/user/{id}")
@@ -60,17 +54,17 @@ public class UserController {
 	}
 	
 	@PutMapping("/user")
-	public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO) {
+	public ResponseEntity<User> updateUser(@RequestBody User user) {
 //		User u=userRepo.save(user);
-		userService.update(userDTO);
-		return new ResponseEntity<UserDTO>(userDTO,HttpStatus.OK);
+		userService.update(user);
+		return new ResponseEntity<User>(user,HttpStatus.OK);
 	}
 	
 	@GetMapping("/user/activate/{code}")
 	public ResponseEntity<?> getUserByCode(@PathVariable long code) {
-		UserDTO userDTO=userService.getUserByCode(code);
-		if(userDTO!=null) {
-			return new ResponseEntity<UserDTO>(userDTO,HttpStatus.OK);
+		User user=userService.getUserByCode(code);
+		if(user!=null) {
+			return new ResponseEntity<User>(user,HttpStatus.OK);
 		}else {
 			return new ResponseEntity<String>("User Not Found",HttpStatus.NOT_FOUND);
 		}
