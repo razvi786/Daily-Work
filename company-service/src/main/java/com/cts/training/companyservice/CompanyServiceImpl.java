@@ -30,7 +30,7 @@ public class CompanyServiceImpl implements CompanyService{
 	@Override
 	public Company getById(int id) {
 		Optional<Company> company=companyRepo.findById(id);
-		return company.orElse(new Company());
+		return company.orElse(null);
 	}
 
 	@Override

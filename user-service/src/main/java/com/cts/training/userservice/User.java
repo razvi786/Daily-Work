@@ -24,8 +24,8 @@ public class User implements Serializable{
 	private String email;
 	private long phone;
 	private boolean confirmed=false;
-	private long code;
-	private String dp;
+	private long code=(long) Math.ceil(Math.random()*100000000);
+	private String dp="./assets/images/default.png";
 	
 	public User() {
 		

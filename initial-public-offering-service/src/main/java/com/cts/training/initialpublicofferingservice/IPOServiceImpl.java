@@ -30,7 +30,7 @@ public class IPOServiceImpl implements IPOService{
 	@Override
 	public IPO getById(int id) {
 		Optional<IPO> ipo=IPORepo.findById(id);
-		return ipo.orElse(new IPO());
+		return ipo.orElse(null);
 	}
 
 	@Override

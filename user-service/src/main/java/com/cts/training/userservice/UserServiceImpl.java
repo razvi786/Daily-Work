@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService{
 			sm.setText("Hi "+user.getUsername()+",\n"
 					+ "Your Account has been created successfully.\n"
 					+ "Click on the Link below to activate your account:\n"
-					+ "http://localhost:4200/user/activate?code="+user.getCode());
+					+ "http://localhost:8000/user/activate?code="+user.getCode());
 			jms.send(sm);
 			System.out.println("sending mail...");
 		}
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User getById(int id) {
 		Optional<User> user=userRepo.findById(id);
-		return user.orElse(new User());
+		return user.orElse(null);
 	}
 
 	@Override
