@@ -20,6 +20,7 @@ public class StockPrice implements Serializable{
 	@Id
 	@GeneratedValue
 	private int id;
+	private String company_code;
 	private String stock_exchange;
 	private double current_price;
 	private LocalDate date=LocalDate.now();
@@ -29,13 +30,30 @@ public class StockPrice implements Serializable{
 		
 	}
 
-	public StockPrice(int id, String stock_exchange, double current_price, LocalDate date, LocalTime time) {
+	public StockPrice(int id, String company_code, String stock_exchange, double current_price, LocalDate date, LocalTime time) {
 		super();
 		this.id = id;
+		this.company_code= company_code;
 		this.stock_exchange = stock_exchange;
 		this.current_price = current_price;
 		this.date = date;
 		this.time = time;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getCompany_code() {
+		return company_code;
+	}
+
+	public void setCompany_code(String company_code) {
+		this.company_code = company_code;
 	}
 
 	public int getid() {
