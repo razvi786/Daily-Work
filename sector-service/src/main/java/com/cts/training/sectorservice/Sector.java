@@ -21,6 +21,11 @@ public class Sector implements Serializable{
 	public Sector() {
 		
 	}
+	
+	public Sector(String name, String brief) {
+		this.name = name;
+		this.brief = brief;
+	}
 
 	public Sector(int id, String name, String brief) {
 		super();
