@@ -22,7 +22,7 @@ public class StockPriceController {
 	StockPriceService stockPriceService;
 	
 	@GetMapping("/stock-price")
-	public ResponseEntity<?> getAllCompanies(){
+	public ResponseEntity<?> getAllStockPrices(){
 		List<StockPrice> stockPrices= stockPriceService.getAll();
 		if(stockPrices.size()>0) {
 			return new ResponseEntity<List<StockPrice>>(stockPrices,HttpStatus.OK);

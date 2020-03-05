@@ -41,11 +41,10 @@ public class CompanyController {
 		}
 	}
 	
-	
 	@PostMapping("/company")
 	public ResponseEntity<?> saveCompany(@RequestBody Company c) {
 		Company company= companyService.insert(c);
-		return new ResponseEntity<Company>(company,HttpStatus.OK);
+		return new ResponseEntity<Company>(company,HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/company/{id}")

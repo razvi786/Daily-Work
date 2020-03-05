@@ -21,7 +21,7 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@GetMapping("/user")
+	@GetMapping(value="/user",produces="application/json")
 	public ResponseEntity<?> getAllUsers(){
 		List<User> users=userService.getAll();
 		if(users.size()>0) {
