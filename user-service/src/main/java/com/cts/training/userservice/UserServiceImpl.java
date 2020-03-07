@@ -28,7 +28,27 @@ public class UserServiceImpl implements UserService{
 			sm.setText("Hi "+user.getUsername()+",\n"
 					+ "Your Account has been created successfully.\n"
 					+ "Click on the Link below to activate your account:\n"
-					+ "http://localhost:8000/user/activate?code="+user.getCode());
+					+ "http://localhost:4200/user/activate?code="+user.getCode());
+			jms.send(sm);
+			System.out.println("sending mail...");
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+		return user;
+	}
+	
+	@Override
+	public User reset(User user) {
+		try {
+			SimpleMailMessage sm = new SimpleMailMessage();
+			sm.setFrom("babymol.bobby@gmail.com");
+			sm.setTo(user.getEmail());
+			sm.setSubject("Activate User Account");
+			sm.setText("Hi "+user.getUsername()+",\n"
+					+ "Your Account has been created successfully.\n"
+					+ "Click on the Link below to activate your account:\n"
+					+ "http://localhost:4200/user/activate?code="+user.getCode());
 			jms.send(sm);
 			System.out.println("sending mail...");
 		}

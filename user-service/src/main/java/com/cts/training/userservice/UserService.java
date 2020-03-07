@@ -16,4 +16,6 @@ public interface UserService {
 	
 	public User getUserByCode(long code);
 	
+	public User reset(User user);
+	
 }

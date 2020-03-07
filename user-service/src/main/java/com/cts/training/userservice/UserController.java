@@ -1,5 +1,7 @@
 package com.cts.training.userservice;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +70,12 @@ public class UserController {
 		}else {
 			return new ResponseEntity<String>("User Not Found",HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@GetMapping("/autocomplete/countries")
+	public String countries(){
+		return "{\"query\": \"Unit\",\"suggestions\": [\"United Arab Emirates\", \"United Kingdom\", \"United States\"]}";
+//		return countries;
 	}
 
 }

@@ -1,10 +1,12 @@
 package com.cts.training.stockpriceservice;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class StockPriceServiceImpl implements StockPriceService{
@@ -36,6 +38,12 @@ public class StockPriceServiceImpl implements StockPriceService{
 	@Override
 	public List<StockPrice> getAll() {
 		return stockPriceRepo.findAll();
+	}
+
+	@Override
+	public ImportSummary addStockPricesFromExcelSheet(MultipartFile file) throws IOException,Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
