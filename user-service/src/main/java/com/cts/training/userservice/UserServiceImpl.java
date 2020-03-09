@@ -88,4 +88,11 @@ public class UserServiceImpl implements UserService{
 		return userRepo.findByEmail(email);
 	}
 
+	@Override
+	public User decrypt(String authToken) {
+		String username=authToken.split(":")[0];
+		User user=userRepo.findByUsername(username);
+		return user;
+	}
+
 }

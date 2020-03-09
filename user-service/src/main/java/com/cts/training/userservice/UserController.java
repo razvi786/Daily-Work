@@ -85,8 +85,13 @@ public class UserController {
 	}
 	
 	@GetMapping("/login")
-	public ResponseEntity<?> login(){
-		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+	public ResponseEntity<?> getUsernameByToken(String authToken){
+		User user=userService.decrypt(authToken);
+		if(user!=null) {
+			return new ResponseEntity<User>(user,HttpStatus.OK);
+		}else {
+			return new ResponseEntity<String>("User not found",HttpStatus.OK);
+		}
 	}
 	
 	@GetMapping("/autocomplete/countries")
