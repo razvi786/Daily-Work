@@ -72,6 +72,23 @@ public class UserController {
 		}
 	}
 	
+	@GetMapping("/user/reset-password/{email}")
+	public ResponseEntity<?> resetPassword(@PathVariable String email)
+	{
+		User user=userService.getUserByEmail(email);
+		user=userService.sendResetMail(user);
+		if(user!=null) {
+			return new ResponseEntity<User>(user,HttpStatus.OK);
+		}else{
+			return new ResponseEntity<String>("Unable to send mail",HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping("/login")
+	public ResponseEntity<?> login(){
+		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+	}
+	
 	@GetMapping("/autocomplete/countries")
 	public String countries(){
 		return "{\"query\": \"Unit\",\"suggestions\": [\"United Arab Emirates\", \"United Kingdom\", \"United States\"]}";

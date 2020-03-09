@@ -39,16 +39,15 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public User reset(User user) {
+	public User sendResetMail(User user) {
 		try {
 			SimpleMailMessage sm = new SimpleMailMessage();
 			sm.setFrom("babymol.bobby@gmail.com");
 			sm.setTo(user.getEmail());
-			sm.setSubject("Activate User Account");
+			sm.setSubject("Reset Password");
 			sm.setText("Hi "+user.getUsername()+",\n"
-					+ "Your Account has been created successfully.\n"
-					+ "Click on the Link below to activate your account:\n"
-					+ "http://localhost:4200/user/activate?code="+user.getCode());
+					+ "Click on the Link below to reset your password:\n"
+					+ "http://localhost:4200/reset-code?code="+user.getCode());
 			jms.send(sm);
 			System.out.println("sending mail...");
 		}
@@ -82,6 +81,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User getUserByCode(long code) {
 		return userRepo.findByCode(code);
+	}
+
+	@Override
+	public User getUserByEmail(String email) {
+		return userRepo.findByEmail(email);
 	}
 
 }

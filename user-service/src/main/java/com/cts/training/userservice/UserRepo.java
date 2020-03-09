@@ -6,6 +6,8 @@ public interface UserRepo extends JpaRepository<User, Integer>{
 	
 	public User findByEmail(String email);
 	
+	public User findByUsername(String username);
+	
 	public User findByCode(long code);
 
 }

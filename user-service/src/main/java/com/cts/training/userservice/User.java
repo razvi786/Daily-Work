@@ -26,6 +26,7 @@ public class User implements Serializable{
 	private boolean confirmed=false;
 	private long code=(long) Math.ceil(Math.random()*100000000);
 	private String dp="./assets/images/default.png";
+	private String user_type="ROLE_USER";
 	
 	public User() {
 		
@@ -40,7 +41,7 @@ public class User implements Serializable{
 	}
 
 	public User(int id, String username, String password, boolean admin, String email, long phone, boolean confirmed,
-			long code,String dp) {
+			long code, String dp, String user_type) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -50,7 +51,16 @@ public class User implements Serializable{
 		this.phone = phone;
 		this.confirmed = confirmed;
 		this.code = code;
-		this.dp=dp;
+		this.dp = dp;
+		this.user_type = user_type;
+	}
+
+	public String getUser_type() {
+		return user_type;
+	}
+
+	public void setUser_type(String user_type) {
+		this.user_type = user_type;
 	}
 
 	public int getId() {

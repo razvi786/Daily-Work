@@ -16,6 +16,8 @@ public interface UserService {
 	
 	public User getUserByCode(long code);
 	
-	public User reset(User user);
+	public User sendResetMail(User user);
+	
+	public User getUserByEmail(String email);
 	
 }
