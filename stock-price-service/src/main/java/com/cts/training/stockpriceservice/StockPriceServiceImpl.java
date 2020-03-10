@@ -39,6 +39,11 @@ public class StockPriceServiceImpl implements StockPriceService{
 	public List<StockPrice> getAll() {
 		return stockPriceRepo.findAll();
 	}
+	
+	@Override
+	public List<Integer> getPricesByCompanyCode(String companyCode){
+		return stockPriceRepo.getCompanyPricesByCode(companyCode);
+	}
 
 	@Override
 	public ImportSummary addStockPricesFromExcelSheet(MultipartFile file) throws IOException,Exception {

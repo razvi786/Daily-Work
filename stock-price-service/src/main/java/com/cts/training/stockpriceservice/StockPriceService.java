@@ -19,4 +19,6 @@ public interface StockPriceService {
 
 	public ImportSummary addStockPricesFromExcelSheet(MultipartFile file) throws IOException,Exception;
 
+	List<Integer> getPricesByCompanyCode(String companyCode);
+
 }
