@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ConfigurableApplicationContext;
 
-@SpringBootApplication
+import com.cts.training.stockpriceservice.repo.StockPriceRepo;
+
+@SpringBootApplication(scanBasePackages = "com.cts.training.stockpriceservice")
 @EnableDiscoveryClient
 public class StockPriceServiceApplication {
 
