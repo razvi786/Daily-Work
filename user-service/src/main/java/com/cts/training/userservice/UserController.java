@@ -1,9 +1,15 @@
 package com.cts.training.userservice;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +22,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cts.training.userservice.model.UserDTO;
+
 @CrossOrigin(origins="*")
 @RestController
 public class UserController {
+	
+	Logger logger=LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	UserService userService;
@@ -85,19 +95,32 @@ public class UserController {
 	}
 	
 	@GetMapping("/login")
-	public ResponseEntity<?> getUsernameByToken(String authToken){
-		User user=userService.decrypt(authToken);
-		if(user!=null) {
-			return new ResponseEntity<User>(user,HttpStatus.OK);
-		}else {
-			return new ResponseEntity<String>("User not found",HttpStatus.OK);
+	public ResponseEntity<?> login(HttpServletRequest request){
+		String authToken=request.getHeader("Authorization");
+		logger.info("Login using Authentication Token --> {}",authToken);
+		String username=null;
+		String password=null;
+		if(authToken!=null && authToken.startsWith("Basic")) {
+			String base64Credentials=authToken.substring("Basic".length()).trim();
+			byte[] decodedCredentials=Base64.getDecoder().decode(base64Credentials);
+			String credentials=new String(decodedCredentials, StandardCharsets.UTF_8);
+			username=credentials.split(":")[0];
+			password=credentials.split(":")[1];
+		}
+		try {
+			UserDTO user=userService.getUserByUsernameAndPassword(username, password);
+			logger.info("User Logged in Successfully with username ---> {}",username);
+			return new ResponseEntity<UserDTO>(user,HttpStatus.OK);
+		}catch (Exception e) {
+			System.out.println(e.getStackTrace());
+			logger.info("Unauthorized Access ---> {}",e.getStackTrace().toString());
+			return new ResponseEntity<String>("No user found",HttpStatus.NOT_FOUND);
 		}
 	}
 	
-	@GetMapping("/autocomplete/countries")
-	public String countries(){
-		return "{\"query\": \"Unit\",\"suggestions\": [\"United Arab Emirates\", \"United Kingdom\", \"United States\"]}";
-//		return countries;
+	@PostMapping("/user/getUserByUsernameAndPassword/{username}/{password}")
+	public UserDTO getUserByUsernameAndPassword(@PathVariable String username,@PathVariable String password) {
+		return userService.getUserByUsernameAndPassword(username,password);
 	}
 
 }

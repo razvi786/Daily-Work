@@ -2,6 +2,8 @@ package com.cts.training.userservice;
 
 import java.util.List;
 
+import com.cts.training.userservice.model.UserDTO;
+
 public interface UserService{
 	
 	public User insert(User user);
@@ -21,5 +23,7 @@ public interface UserService{
 	public User getUserByEmail(String email);
 	
 	public User decrypt(String authToken);
+
+	public UserDTO getUserByUsernameAndPassword(String username, String password);
 	
 }

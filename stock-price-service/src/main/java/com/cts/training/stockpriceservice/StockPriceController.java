@@ -86,6 +86,11 @@ public class StockPriceController {
 		}
 	}
 	
+	@GetMapping("/stock-price/chart/{company_code}")
+	public ResponseEntity<?> getStockPricesByCompanyCode(@PathVariable String company_code){
+		List<Integer> stocks=stockPriceService.getPricesByCompanyCode(company_code);
+		return new ResponseEntity<List<Integer>>(stocks,HttpStatus.OK);
+	}
 	
 
 }

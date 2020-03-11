@@ -38,4 +38,14 @@ public class CompanyServiceImpl implements CompanyService{
 		return companyRepo.findAll();
 	}
 	
+	@Override
+	public List<Company> getCompaniesByPattern(String pattern) {
+		return companyRepo.findAllByNameContaining(pattern);
+	}
+	
+	@Override
+	public Optional<Company> getCompanyByName(String name) {
+		return companyRepo.findByName(name);
+	}
+	
 }

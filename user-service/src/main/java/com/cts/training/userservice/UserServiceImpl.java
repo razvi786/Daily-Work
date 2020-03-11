@@ -3,10 +3,14 @@ package com.cts.training.userservice;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.provider.HibernateUtils;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
+import com.cts.training.userservice.model.UserDTO;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -93,6 +97,15 @@ public class UserServiceImpl implements UserService{
 		String username=authToken.split(":")[0];
 		User user=userRepo.findByUsername(username);
 		return user;
+	}
+	
+	@Override
+	public UserDTO getUserByUsernameAndPassword(String username,String password) {
+		Optional<User> u=userRepo.findByUsernameAndPassword(username, password);
+		User user=u.orElse(null);
+		UserDTO userDTO=new UserDTO();
+		BeanUtils.copyProperties(user, userDTO);
+		return userDTO;
 	}
 
 }

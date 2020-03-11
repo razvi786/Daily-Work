@@ -1,6 +1,7 @@
 package com.cts.training.companyservice;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,6 +57,27 @@ public class CompanyController {
 	public ResponseEntity<?> updateCompany(@RequestBody Company c) {
 		Company company= companyService.update(c);
 		return new ResponseEntity<Company>(company,HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/company/pattern/{pattern}")
+	public ResponseEntity<?> getCompaniesByPattern(@PathVariable String pattern) {
+		List<Company> companies = companyService.getCompaniesByPattern(pattern);
+		if(companies!=null) {
+			return new ResponseEntity<List<Company>>(companies,HttpStatus.OK);
+		}else {
+			return new ResponseEntity<String>("No users found",HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping("/company/getByName/{name}")
+	public ResponseEntity<?> getByName(@PathVariable String name){
+		Optional<Company> c=companyService.getCompanyByName(name);
+		Company company=c.orElse(null);
+		if(company!=null) {
+			return new ResponseEntity<Company>(company,HttpStatus.OK);
+		}else {
+			return new ResponseEntity<String>("Company not found",HttpStatus.OK);
+		}
 	}
 
 }
