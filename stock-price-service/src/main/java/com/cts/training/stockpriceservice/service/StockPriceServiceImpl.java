@@ -1,6 +1,7 @@
 package com.cts.training.stockpriceservice.service;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,11 +11,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cts.training.stockpriceservice.entity.StockPrice;
 import com.cts.training.stockpriceservice.model.ImportSummary;
+import com.cts.training.stockpriceservice.model.StockPriceOnPeriod;
 import com.cts.training.stockpriceservice.repo.StockPriceRepo;
 
 @Service
-public class StockPriceServiceImpl implements StockPriceService{
-	
+public class StockPriceServiceImpl implements StockPriceService {
+
 	@Autowired
 	StockPriceRepo stockPriceRepo;
 
@@ -37,16 +39,22 @@ public class StockPriceServiceImpl implements StockPriceService{
 	public List<StockPrice> getAll() {
 		return stockPriceRepo.findAll();
 	}
-	
+
 	@Override
 	public StockPrice getById(int id) {
-		Optional<StockPrice> se=stockPriceRepo.findById(id);
+		Optional<StockPrice> se = stockPriceRepo.findById(id);
 		return se.orElse(null);
 	}
-	
+
 	@Override
-	public List<Integer> getPricesByCompanyCode(String companyCode){
+	public List<Integer> getPricesByCompanyCode(String companyCode) {
 		return stockPriceRepo.getCompanyPricesByCode(companyCode);
 	}
-	
+
+	@Override
+	public List<StockPriceOnPeriod> getCompanyStockPriceBetween(String companyCode, String stockExchange,
+			LocalDate startDate, LocalDate endDate, String periodicity) {
+		return stockPriceRepo.getStockPriceBetweenDates(companyCode, stockExchange, startDate, endDate);
+	}
+
 }

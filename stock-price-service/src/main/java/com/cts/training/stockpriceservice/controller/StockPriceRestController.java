@@ -1,6 +1,7 @@
 package com.cts.training.stockpriceservice.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cts.training.stockpriceservice.entity.StockPrice;
 import com.cts.training.stockpriceservice.model.ImportSummary;
+import com.cts.training.stockpriceservice.model.StockPriceOnPeriod;
 import com.cts.training.stockpriceservice.service.StockPriceService;
 
 @CrossOrigin(origins = "*")
@@ -69,6 +71,13 @@ public class StockPriceRestController {
 	public ResponseEntity<?> getStockPricesByCompanyCode(@PathVariable String company_code){
 		List<Integer> stocks=stockPriceService.getPricesByCompanyCode(company_code);
 		return new ResponseEntity<List<Integer>>(stocks,HttpStatus.OK);
+	}
+	
+	@GetMapping("/stock-price/companyStockPriceBetween/{companyCode}/{stockExchange}/{startDate}/{endDate}/{periodicity}")
+	public List<StockPriceOnPeriod> getCompanyStockPriceBetweenDays(@PathVariable String companyCode,
+			@PathVariable String stockExchange, @PathVariable LocalDate startDate, @PathVariable LocalDate endDate,
+			@PathVariable String periodicity){
+		return stockPriceService.getCompanyStockPriceBetween(companyCode, stockExchange, startDate, endDate, periodicity);
 	}
 
 //	@PostMapping(value = "/stock-price/upload-stock-sheet", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

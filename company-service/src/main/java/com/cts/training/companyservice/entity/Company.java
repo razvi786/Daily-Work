@@ -3,14 +3,18 @@ package com.cts.training.companyservice.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -25,37 +29,32 @@ public class Company implements Serializable{
 	private String name;
 	private double turnover;
 	private String ceo;
-	
-	@ElementCollection(fetch=FetchType.LAZY)
-	@CollectionTable(name = "board_of_director")
-	private List<String> board_of_directors;
-	
-	@ElementCollection(fetch=FetchType.LAZY)
-	@CollectionTable(name = "listed_in_stock_exchange")
-	private List<String> listed_in_stock_exchanges;
-	
 	private String sector;
 	private String brief;
-	private String stock_code;
 	private boolean activated=true;
-	
+	@ElementCollection(fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
+	@CollectionTable(name = "directors")
+	private List<String> directors;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<ListedIn> listedIn;
+
 	public Company() {
 		
 	}
 
-	public Company(int id, String name, double turnover, String ceo, List<String> board_of_directors,
-			List<String> listed_in_stock_exchanges, String sector, String brief, String stock_code, boolean activated) {
+	public Company(int id, String name, double turnover, String ceo, String sector, String brief, boolean activated,
+			List<String> directors, List<ListedIn> listedIn) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.turnover = turnover;
 		this.ceo = ceo;
-		this.board_of_directors = board_of_directors;
-		this.listed_in_stock_exchanges = listed_in_stock_exchanges;
 		this.sector = sector;
 		this.brief = brief;
-		this.stock_code = stock_code;
 		this.activated = activated;
+		this.directors = directors;
+		this.listedIn = listedIn;
 	}
 
 	public int getId() {
@@ -90,22 +89,6 @@ public class Company implements Serializable{
 		this.ceo = ceo;
 	}
 
-	public List<String> getBoard_of_directors() {
-		return board_of_directors;
-	}
-
-	public void setBoard_of_directors(List<String> board_of_directors) {
-		this.board_of_directors = board_of_directors;
-	}
-
-	public List<String> getListed_in_stock_exchanges() {
-		return listed_in_stock_exchanges;
-	}
-
-	public void setListed_in_stock_exchanges(List<String> listed_in_stock_exchanges) {
-		this.listed_in_stock_exchanges = listed_in_stock_exchanges;
-	}
-
 	public String getSector() {
 		return sector;
 	}
@@ -122,14 +105,6 @@ public class Company implements Serializable{
 		this.brief = brief;
 	}
 
-	public String getStock_code() {
-		return stock_code;
-	}
-
-	public void setStock_code(String stock_code) {
-		this.stock_code = stock_code;
-	}
-
 	public boolean isActivated() {
 		return activated;
 	}
@@ -138,16 +113,27 @@ public class Company implements Serializable{
 		this.activated = activated;
 	}
 
-	@Override
-	public String toString() {
-		return "Company [id=" + id + ", name=" + name + ", turnover=" + turnover + ", ceo=" + ceo
-				+ ", board_of_directors=" + board_of_directors + ", listed_in_stock_exchanges="
-				+ listed_in_stock_exchanges + ", sector=" + sector + ", brief=" + brief + ", stock_code=" + stock_code
-				+ ", activated=" + activated + "]";
+	public List<String> getDirectors() {
+		return directors;
 	}
 
-	
-	
-	
+	public void setDirectors(List<String> directors) {
+		this.directors = directors;
+	}
+
+	public List<ListedIn> getListedIn() {
+		return listedIn;
+	}
+
+	public void setListedIn(List<ListedIn> listedIn) {
+		this.listedIn = listedIn;
+	}
+
+	@Override
+	public String toString() {
+		return "Company [id=" + id + ", name=" + name + ", turnover=" + turnover + ", ceo=" + ceo + ", sector=" + sector
+				+ ", brief=" + brief + ", activated=" + activated + ", directors=" + directors + ", listedIn="
+				+ listedIn + "]";
+	}	
 
 }

@@ -1,5 +1,7 @@
 package com.cts.training.stockpriceservice;
 
+import java.time.LocalDate;
+
 import org.apache.catalina.core.ApplicationContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.beans.BeansEndpoint.ContextBeans;
@@ -16,7 +18,7 @@ public class StockPriceServiceApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext c=SpringApplication.run(StockPriceServiceApplication.class, args);
 		StockPriceRepo repoBean=c.getBean(StockPriceRepo.class);
-//		System.out.println(repoBean.getCompanyPricesByCode(500112));
+//		System.out.println(repoBean.getStockPriceBetweenDates("500112", "BSE", LocalDate.of(2019, 6, 8), LocalDate.of(2020, 1,14)));
 //		System.out.println("All Stock Prices: "+repoBean.getCompanyPricesByCode("500112"));
 	}
 
