@@ -1,4 +1,4 @@
-package com.cts.training.sectorservice.entity;
+package com.cts.training.sectorservice.model;
 
 public class User{
 

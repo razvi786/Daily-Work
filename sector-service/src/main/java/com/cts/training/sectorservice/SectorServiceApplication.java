@@ -6,7 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @EnableFeignClients
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.cts.training.sectorservice")
 @EnableDiscoveryClient
 public class SectorServiceApplication {
 

@@ -1,4 +1,4 @@
-package com.cts.training.sectorservice;
+package com.cts.training.sectorservice.entity;
 
 import java.io.Serializable;
 
@@ -7,8 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 @Entity
-@Table
+@Table(name="sectors")
+@Component
 public class Sector implements Serializable{
 
 	private static final long serialVersionUID = 6516600168260975731L;

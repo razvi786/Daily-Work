@@ -24,8 +24,8 @@ public interface StockPriceService {
 	
 	public List<Integer> getPricesByCompanyCode(String companyCode);
 
-	public List<StockPriceOnPeriod> getCompanyStockPriceBetween(String companyCode, String stockExchange, LocalDate startDate,
-			LocalDate endDate, String periodicity);
+	public List<StockPriceOnPeriod> getCompanyStockPriceBetween(String companyCode, String stockExchange, String startDate,
+			String endDate, String periodicity);
 
 //	public ImportSummary addStockPricesFromExcelSheet(MultipartFile file) throws IOException,Exception;
 

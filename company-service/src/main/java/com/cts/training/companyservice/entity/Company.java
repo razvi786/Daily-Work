@@ -18,7 +18,7 @@ import org.hibernate.annotations.FetchMode;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table
+@Table(name="companies")
 @Component
 public class Company implements Serializable{
 

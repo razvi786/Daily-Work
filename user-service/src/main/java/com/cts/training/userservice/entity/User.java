@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table
+@Table(name="users")
 @Component
 public class User implements Serializable{
 

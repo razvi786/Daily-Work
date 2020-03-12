@@ -73,9 +73,9 @@ public class StockPriceRestController {
 		return new ResponseEntity<List<Integer>>(stocks,HttpStatus.OK);
 	}
 	
-	@GetMapping("/stock-price/companyStockPriceBetween/{companyCode}/{stockExchange}/{startDate}/{endDate}/{periodicity}")
+	@GetMapping("/stock-price/{companyCode}/{stockExchange}/{startDate}/{endDate}/{periodicity}")
 	public List<StockPriceOnPeriod> getCompanyStockPriceBetweenDays(@PathVariable String companyCode,
-			@PathVariable String stockExchange, @PathVariable LocalDate startDate, @PathVariable LocalDate endDate,
+			@PathVariable String stockExchange, @PathVariable String startDate, @PathVariable String endDate,
 			@PathVariable String periodicity){
 		return stockPriceService.getCompanyStockPriceBetween(companyCode, stockExchange, startDate, endDate, periodicity);
 	}
