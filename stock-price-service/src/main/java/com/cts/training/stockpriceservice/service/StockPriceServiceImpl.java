@@ -56,5 +56,17 @@ public class StockPriceServiceImpl implements StockPriceService {
 			String startDate, String endDate, String periodicity) {
 		return stockPriceRepo.getStockPriceBetweenDates(companyCode, stockExchange, LocalDate.parse(startDate), LocalDate.parse(endDate));
 	}
+	
+	@Override
+	public List<StockPriceOnPeriod> getCompanyStockPriceBetweenByMonth(String companyCode, String stockExchange,
+			String startDate, String endDate, String periodicity) {
+		return stockPriceRepo.getStockPriceBetweenMonths(companyCode, stockExchange, LocalDate.parse(startDate), LocalDate.parse(endDate));
+	}
+	
+	@Override
+	public List<StockPriceOnPeriod> getCompanyStockPriceBetweenByYear(String companyCode, String stockExchange,
+			String startDate, String endDate, String periodicity) {
+		return stockPriceRepo.getStockPriceBetweenYears(companyCode, stockExchange, LocalDate.parse(startDate), LocalDate.parse(endDate));
+	}
 
 }

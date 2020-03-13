@@ -77,7 +77,13 @@ public class StockPriceRestController {
 	public List<StockPriceOnPeriod> getCompanyStockPriceBetweenDays(@PathVariable String companyCode,
 			@PathVariable String stockExchange, @PathVariable String startDate, @PathVariable String endDate,
 			@PathVariable String periodicity){
-		return stockPriceService.getCompanyStockPriceBetween(companyCode, stockExchange, startDate, endDate, periodicity);
+		if(periodicity.equals("Day")) {
+			return stockPriceService.getCompanyStockPriceBetween(companyCode, stockExchange, startDate, endDate, periodicity);
+		}else if(periodicity.equals("Month")){
+			return stockPriceService.getCompanyStockPriceBetweenByMonth(companyCode, stockExchange, startDate, endDate, periodicity);
+		}else {
+			return stockPriceService.getCompanyStockPriceBetweenByYear(companyCode, stockExchange, startDate, endDate, periodicity);
+		}
 	}
 
 //	@PostMapping(value = "/stock-price/upload-stock-sheet", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

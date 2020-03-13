@@ -20,16 +20,16 @@ public interface StockPriceRepo extends JpaRepository<StockPrice, Integer>{
 			+ " GROUP BY date")
 	public List<StockPriceOnPeriod> getStockPriceBetweenDates(String companyCode, String stockExchange, LocalDate startDate, LocalDate endDate);
 	
-//	@Query("SELECT new com.cts.training.stockpriceservice.model.StockPriceOnPeriod(companyCode,stockExchange,MONTH(date),AVG(currentPrice))"
-//			+ "FROM StockPrice"
-//			+ "WHERE companyCode=?1 AND stockExchange=?2 AND date BETWEEN ?3 AND ?4"
-//			+ "GROUP BY MONTH(date)")
-//	public List<StockPriceOnPeriod> getStockPriceBetweenMonths(String companyCode, String stockExchange, LocalDate startDate, LocalDate endDate);
-//	
-//	@Query("SELECT new com.cts.training.stockpriceservice.model.StockPriceOnPeriod(companyCode,stockExchange,YEAR(date),AVG(currentPrice))"
-//			+ "FROM StockPrice"
-//			+ "WHERE companyCode=?1 AND stockExchange=?2 AND date BETWEEN ?3 AND ?4"
-//			+ "GROUP BY YEAR(date)")
-//	public List<StockPriceOnPeriod> getStockPriceBetweenYears(String companyCode, String stockExchange, LocalDate startDate, LocalDate endDate);
-//	
+	@Query("SELECT new com.cts.training.stockpriceservice.model.StockPriceOnPeriod(company_code,stock_exchange,month(date),AVG(current_price))"
+			+ " FROM StockPrice"
+			+ " WHERE company_code=?1 AND stock_exchange=?2 AND date BETWEEN ?3 AND ?4"
+			+ " GROUP BY month(date)")
+	public List<StockPriceOnPeriod> getStockPriceBetweenMonths(String companyCode, String stockExchange, LocalDate startDate, LocalDate endDate);
+	
+	@Query("SELECT new com.cts.training.stockpriceservice.model.StockPriceOnPeriod(company_code,stock_exchange,year(date),AVG(current_price))"
+			+ " FROM StockPrice"
+			+ " WHERE company_code=?1 AND stock_exchange=?2 AND date BETWEEN ?3 AND ?4"
+			+ " GROUP BY year(date)")
+	public List<StockPriceOnPeriod> getStockPriceBetweenYears(String companyCode, String stockExchange, LocalDate startDate, LocalDate endDate);
+	
 }

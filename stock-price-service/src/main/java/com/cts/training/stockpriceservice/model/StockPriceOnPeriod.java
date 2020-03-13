@@ -1,6 +1,8 @@
 package com.cts.training.stockpriceservice.model;
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
 
 public class StockPriceOnPeriod {
 	
@@ -26,6 +28,17 @@ public class StockPriceOnPeriod {
 		this.companyCode = companyCode;
 		this.stockExchange = stockExchange;
 		this.dataPoint = dataPoint.toString();
+		this.dataValue = dataValue;
+	}
+	
+	public StockPriceOnPeriod(String companyCode, String stockExchange, Integer dataPoint, double dataValue) {
+		super();
+		this.companyCode = companyCode;
+		this.stockExchange = stockExchange;
+		if(dataPoint<=31)
+			this.dataPoint = Month.of(dataPoint).name();
+		else
+			this.dataPoint=dataPoint.toString();
 		this.dataValue = dataValue;
 	}
 
