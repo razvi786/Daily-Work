@@ -86,24 +86,26 @@ public class StockPriceRestController {
 		}
 	}
 
-//	@PostMapping(value = "/stock-price/upload-stock-sheet", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-//	public ResponseEntity<?> uploadStockSheet(@RequestParam("stocksSheet") MultipartFile file) {
-//		logger.info("File received: {}", file.getOriginalFilename());
-//		if (file.getOriginalFilename().endsWith(".xls") || file.getOriginalFilename().endsWith(".xlsx")) {
-//			try {
-//				return new ResponseEntity<ImportSummary>(stockPriceService.addStockPricesFromExcelSheet(file),
-//						HttpStatus.OK);
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//				return new ResponseEntity<String>("Error Reading File", HttpStatus.BAD_REQUEST);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-//			}
-//		} else {
-//			return new ResponseEntity<String>("Wrong file Extension. (Only .xls or .xlsx allowed.)",
-//					HttpStatus.BAD_REQUEST);
-//		}
-//	}	
+	@PostMapping(value = "/stock-price/upload-stock-sheet", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<?> uploadStockSheet(@RequestParam("stocksSheet") MultipartFile file) {
+		logger.info("File received: {}", file.getOriginalFilename());
+		if (file.getOriginalFilename().endsWith(".xls") || file.getOriginalFilename().endsWith(".xlsx")) {
+			try {
+				return new ResponseEntity<ImportSummary>(stockPriceService.addStockPricesFromExcelSheet(file),
+						HttpStatus.OK);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return new ResponseEntity<String>("Error Reading File", HttpStatus.BAD_REQUEST);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+			}
+		} else {
+			return new ResponseEntity<String>("Wrong file Extension. (Only .xls or .xlsx allowed.)",
+					HttpStatus.BAD_REQUEST);
+		}
+	}	
+	
+	
 
 }

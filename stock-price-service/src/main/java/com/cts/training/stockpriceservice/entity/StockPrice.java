@@ -40,6 +40,15 @@ public class StockPrice implements Serializable{
 		this.date = date;
 		this.time = time;
 	}
+	
+	public StockPrice(String company_code, String stock_exchange, double current_price, LocalDate date,
+			LocalTime time) {
+		this.company_code = company_code;
+		this.stock_exchange = stock_exchange;
+		this.current_price = current_price;
+		this.date = date;
+		this.time = time;
+	}
 
 	public int getId() {
 		return id;

@@ -33,4 +33,6 @@ public interface StockPriceService {
 	public List<StockPriceOnPeriod> getCompanyStockPriceBetweenByYear(String companyCode, String stockExchange,
 			String startDate, String endDate, String periodicity);
 
+	public ImportSummary addStockPricesFromExcelSheet(MultipartFile file) throws Exception;
+
 }
